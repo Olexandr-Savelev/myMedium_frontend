@@ -1,0 +1,22 @@
+@import "../../styles/mixins";
+
+.wrapper {
+    display: flex;
+    padding: 10px 10px 0 10px;
+    align-items: center;
+    flex-direction: column;
+}
+
+.heading {
+    text-align: center;
+    font-weight: 700;
+    font-size: 30px;
+}
+
+.text {
+    max-width: 900px;
+    line-height: 23px;
+    font-size: 18px;
+    letter-spacing: 0.4px;
+    font-weight: 300;
+}

@@ -1,0 +1,9 @@
+@use '/styles/variables' as variable;
+
+.post {
+    border: 1px solid variable.$border-color;
+    border-left: none;
+    border-right: none;
+    padding: 10px;
+    border-radius: 7px;
+}

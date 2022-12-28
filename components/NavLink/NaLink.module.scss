@@ -1,0 +1,34 @@
+@use '/styles/variables' as variable;
+ 
+.link{
+    cursor: pointer;
+    font-weight: 400;
+    line-height: 110%;
+    border-radius: 20px;
+    color: variable.$text-main-color;
+}
+
+.withBG {
+    background-color: variable.$link-bg;
+    padding: 10px 20px;
+    color: variable.$text-white-color;
+
+    &:hover{
+        background-color: variable.$link-bg-hover;
+    }
+}
+
+.withBorder {
+    padding: 10px 20px;
+    border: 1px solid variable.$link-bg-hover;
+    color: variable.$link-bg-hover;
+}
+
+.inMenu {
+    padding: 8px 0;
+    display: block;
+}
+
+.textColor{
+    color: variable.$link-bg;
+}

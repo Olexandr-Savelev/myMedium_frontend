@@ -1,0 +1,39 @@
+@use "variables" as variable;
+
+@import './mixins';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+html,
+body {
+  padding: 0;
+  margin: 0;
+  font-family: "Roboto", sans-serif;
+  font-weight: 400;
+  min-height: 100%;
+}
+
+a {
+  text-decoration: none;
+}
+
+h1,h2,h4,h5,h6 {
+  color: variable.$text-main-color;
+}
+
+h3{
+  @include thin-heding;
+}
+
+p {
+  color:variable.$text-main-color;
+  @include paragraph-style;
+}
+
+
+* {
+  box-sizing: border-box;
+}

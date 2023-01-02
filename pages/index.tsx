@@ -1,9 +1,10 @@
+import { NextPage } from "next";
 import Hero from "../components/Hero/Hero";
 import PostList from "../components/PostList/PostList";
 import { Slider } from "../components/Slider/Slider";
 import { PostListProps } from "../pageInterfaces/IndexPageProps";
 
-const Home = ({ postList }: PostListProps): JSX.Element => {
+const Home: NextPage<PostListProps> = ({ postList }) => {
   return (
     <div>
       <Hero />

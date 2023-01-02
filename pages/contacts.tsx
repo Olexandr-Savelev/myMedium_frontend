@@ -1,11 +1,11 @@
-import { GetStaticProps } from "next";
+import { GetStaticProps, NextPage } from "next";
 import {
   Contact,
   ContactsPageProps,
 } from "../pageInterfaces/ContactsPageProps";
 import { motion } from "framer-motion";
 
-const Contacts = ({ contactList }: ContactsPageProps): JSX.Element => {
+const Contacts: NextPage<ContactsPageProps> = ({ contactList }) => {
   return (
     <div className="overflow-hidden">
       <motion.div animate={{ y: [-1000, 0] }}>

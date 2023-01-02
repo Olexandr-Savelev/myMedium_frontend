@@ -1,11 +1,15 @@
-@use '/styles/variables' as variable;
- 
-.link{
+@use "/styles/variables" as variable;
+
+.link {
     cursor: pointer;
     font-weight: 400;
     line-height: 110%;
     border-radius: 20px;
     color: variable.$text-main-color;
+    font-size: 17px;
+    @media (max-width: 767px) {
+        display: none;
+    }
 }
 
 .withBG {
@@ -13,7 +17,7 @@
     padding: 10px 20px;
     color: variable.$text-white-color;
 
-    &:hover{
+    &:hover {
         background-color: variable.$link-bg-hover;
     }
 }
@@ -29,6 +33,6 @@
     display: block;
 }
 
-.textColor{
+.textColor {
     color: variable.$link-bg;
 }

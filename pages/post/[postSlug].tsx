@@ -1,8 +1,9 @@
+import { NextPage } from "next";
 import { useRouter } from "next/router";
 import PostPageComponent from "../../components/PostPage/PostPageComponent";
 import { IPostPageProps } from "../../pageInterfaces/PostPageProps";
 
-const PostPage = ({ postItem, comments }: IPostPageProps) => {
+const PostPage: NextPage<IPostPageProps> = ({ postItem, comments }) => {
   const router = useRouter();
 
   if (router.isFallback)
@@ -30,15 +31,11 @@ export async function getStaticProps({ params }: any) {
   const postRes = await fetch(
     `https://jsonplaceholder.typicode.com/posts/${postSlug}`
   );
+  const postItem = await postRes.json();
+
   const commetsRes = await fetch(
     "https://jsonplaceholder.typicode.com/comments?_limit=10"
   );
-
-  const userRes = await fetch(
-    "https://jsonplaceholder.typicode.com/comments?_limit=10"
-  );
-
-  const postItem = await postRes.json();
   const comments = await commetsRes.json();
 
   return {

@@ -1,8 +1,9 @@
 import { PostItemProps } from "../../pageInterfaces/IndexPageProps";
 import Link from "next/link";
 import styles from "./PostItem.module.scss";
+import { FC } from "react";
 
-export default function PostItem({ ...postItem }: PostItemProps) {
+const PostItem: FC<PostItemProps> = ({ ...postItem }) => {
   return (
     <div className={styles.post}>
       <h3 className={styles.title}>
@@ -14,4 +15,6 @@ export default function PostItem({ ...postItem }: PostItemProps) {
       <p className={styles.text}>{postItem.body}</p>
     </div>
   );
-}
+};
+
+export default PostItem;

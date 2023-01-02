@@ -1,10 +1,11 @@
 import { motion } from "framer-motion";
+import { FC } from "react";
 
 interface IErrorString {
   message: string;
 }
 
-const ErrorString: React.FC<IErrorString> = ({ message }) => {
+const ErrorString: FC<IErrorString> = ({ message }) => {
   return (
     <motion.div
       animate={{ opacity: [0, 1] }}

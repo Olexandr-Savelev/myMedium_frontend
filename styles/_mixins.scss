@@ -8,21 +8,21 @@
 
     @media (min-width: 768px) {
         line-height: 23px;
-        font-size:  18px;
+        font-size: 16px;
         letter-spacing: 0.4px;
         font-weight: 500;
     }
 }
 
 @mixin thin-heding {
-    @media(min-width: 640px){
+    @media (min-width: 640px) {
         color: #0f172a;
         font-size: 18px;
         font-weight: 300;
         margin-bottom: 8px;
     }
 
-    @media(min-width: 768px){
+    @media (min-width: 768px) {
         color: #0f172a;
         font-size: 20px;
         font-weight: 300;

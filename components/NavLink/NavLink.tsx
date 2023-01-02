@@ -1,18 +1,35 @@
-import { NavLinkProps } from "./NavLinkProps"
-import cn from 'classnames'
-import styles from './NaLink.module.scss'
-import Link from "next/link"
+import { NavLinkProps } from "./NavLinkProps";
+import cn from "classnames";
+import styles from "./NaLink.module.scss";
+import Link from "next/link";
+import { useRouter } from "next/router";
+import { FC } from "react";
 
-export default function NavLink({ children, href = '/', style, inMenu = false }: NavLinkProps): JSX.Element {
+const NavLink: FC<NavLinkProps> = ({
+  children,
+  href = "/",
+  style,
+  inMenu = false,
+}) => {
+  const { pathname } = useRouter();
 
-    const className = "hidden text-[20px] md:block"
-
-    return (
-        <Link href={href}><a className={cn([styles.link], className, {
-            [styles.withBorder]: style === "withBorder",
-            [styles.withBG]: style === "withBG",
-            [styles.textColor]: style === "textColor",
-            [styles.inMenu]: inMenu === true,
-        })}>{children}</a></Link>
-    )
-}
+  return (
+    <Link
+      href={href}
+      passHref
+    >
+      <a
+        style={pathname == href ? { color: "#9c9c9c" } : {}}
+        className={cn([styles.link], {
+          [styles.withBorder]: style === "withBorder",
+          [styles.withBG]: style === "withBG",
+          [styles.textColor]: style === "textColor",
+          [styles.inMenu]: inMenu === true,
+        })}
+      >
+        {children}
+      </a>
+    </Link>
+  );
+};
+export default NavLink;

@@ -1,14 +1,11 @@
 import Image from "next/image";
-import React from "react";
+import { FC } from "react";
 import { IComment, IPostPageProps } from "../../pageInterfaces/PostPageProps";
 import styles from "./PostPageComponent.module.scss";
 
-const PostPageComponent = ({
-  postItem,
-  comments,
-}: IPostPageProps): JSX.Element => {
+const PostPageComponent: FC<IPostPageProps> = ({ postItem, comments }) => {
   return (
-    <>
+    <div className={styles.postpage_wrapper}>
       <div className={styles.post_wrapper}>
         <h3 className={styles.post_heading}>{postItem.title.toUpperCase()}</h3>
         <p className={styles.text}>{postItem.body}</p>
@@ -38,13 +35,12 @@ const PostPageComponent = ({
                   <p className={styles.comment_email}>Email: {comment.email}</p>
                 </div>
               </header>
-
               <p className={styles.comment_text}>{comment.body}</p>
             </li>
           )
         )}
       </ul>
-    </>
+    </div>
   );
 };
 

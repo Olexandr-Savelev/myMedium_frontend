@@ -1,9 +1,9 @@
-import { useState } from "react";
+import { FC, useState } from "react";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { PostListProps } from "../../pageInterfaces/IndexPageProps";
 import PostItem from "../PostItem/PostItem";
 
-export default function PostList({ postList }: PostListProps): JSX.Element {
+const PostList: FC<PostListProps> = ({ postList }) => {
   const [posts, setPosts] = useState(postList);
   const [hasMore, setHasMore] = useState(true);
 
@@ -39,4 +39,5 @@ export default function PostList({ postList }: PostListProps): JSX.Element {
       </div>
     </InfiniteScroll>
   );
-}
+};
+export default PostList;

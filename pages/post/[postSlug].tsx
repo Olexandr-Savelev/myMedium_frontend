@@ -1,28 +1,49 @@
-import { PostItemProps } from '../../pageInterfaces/IndexPageProps';
-import PostItem from '../../components/PostItem/PostItem';
+import { useRouter } from "next/router";
+import PostPageComponent from "../../components/PostPage/PostPageComponent";
+import { IPostPageProps } from "../../pageInterfaces/PostPageProps";
 
-const PostPage = (postData: PostItemProps): JSX.Element => {
-    return (
-        <PostItem {...postData} />
-    )
-}
+const PostPage = ({ postItem, comments }: IPostPageProps) => {
+  const router = useRouter();
+
+  if (router.isFallback)
+    return <h2 style={{ textAlign: "center" }}>LOADING...</h2>;
+  return (
+    <PostPageComponent
+      postItem={postItem}
+      comments={comments}
+    />
+  );
+};
 
 export async function getStaticPaths() {
-    return {
-        paths: [{ params: { postSlug: 'sth' } }, { params: { postSlug: 'sth-else' } }],
-        fallback: true,
-    };
+  return {
+    paths: [
+      { params: { postSlug: "sth" } },
+      { params: { postSlug: "sth-else" } },
+    ],
+    fallback: true,
+  };
 }
 
 export async function getStaticProps({ params }: any) {
-    const { postSlug } = params;
-    const response = await fetch(`https://jsonplaceholder.typicode.com/posts/${postSlug}`);
-    const postItem = await response.json();
+  const { postSlug } = params;
+  const postRes = await fetch(
+    `https://jsonplaceholder.typicode.com/posts/${postSlug}`
+  );
+  const commetsRes = await fetch(
+    "https://jsonplaceholder.typicode.com/comments?_limit=10"
+  );
 
-    return {
-        props: postItem
-    }
+  const userRes = await fetch(
+    "https://jsonplaceholder.typicode.com/comments?_limit=10"
+  );
+
+  const postItem = await postRes.json();
+  const comments = await commetsRes.json();
+
+  return {
+    props: { postItem, comments },
+  };
 }
 
 export default PostPage;
-

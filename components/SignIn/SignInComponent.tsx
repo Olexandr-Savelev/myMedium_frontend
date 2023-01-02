@@ -1,6 +1,4 @@
-import { useState } from "react";
 import { useForm } from "react-hook-form";
-import { Resolver } from "react-hook-form/dist/types";
 
 interface FormValues {
   username: string;
@@ -8,7 +6,6 @@ interface FormValues {
 }
 
 const SignInComponent = () => {
-  const [error, setError] = useState();
   const {
     register,
     handleSubmit,

@@ -1,7 +1,9 @@
 import { useForm } from "react-hook-form";
+import ErrorString from "../Error/ErrorString";
+import { motion } from "framer-motion";
 
 interface FormValues {
-  username: string;
+  email: string;
   password: string;
 }
 
@@ -15,7 +17,10 @@ const SignInComponent = () => {
   const onFormSubmit = (data: FormValues) => console.log(data);
 
   return (
-    <div className="w-full flex flex-col items-center mt-4">
+    <motion.div
+      animate={{ opacity: [0, 1] }}
+      className="w-full flex flex-col items-center mt-4"
+    >
       <h3 className="text-3xl font-bold">SignIn</h3>
       <div className="w-full max-w-xl">
         <form
@@ -24,32 +29,37 @@ const SignInComponent = () => {
         >
           <div className="mb-4">
             <label
-              className="block text-gray-700 text-sm font-bold mb-2"
+              className="block text-gray-700 text-lg font-bold mb-2"
               htmlFor="username"
             >
-              Username
+              Email
             </label>
             <input
-              {...register("username", { required: true })}
+              {...register("email", {
+                required: true,
+                pattern: {
+                  value:
+                    /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
+                  message: "Please enter a valid email",
+                },
+              })}
               className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-              name="username"
-              aria-invalid={errors.username ? "true" : "false"}
-              id="username"
-              type="text"
-              placeholder="Username"
+              name="email"
+              aria-invalid={errors.email ? "true" : "false"}
+              id="email"
+              type="email"
+              placeholder="Email"
             />
-            {errors.username && errors.username.type === "required" && (
-              <div
-                className="bg-red-100 border mt-2 border-red-400 text-red-700 px-4 py-3 rounded relative"
-                role="alert"
-              >
-                <span className="block sm:inline">Username is required</span>
-              </div>
+            {errors.email && errors.email.type === "required" && (
+              <ErrorString message="Email is required" />
+            )}
+            {errors.email && errors.email.type === "pattern" && (
+              <ErrorString message="Invalid Email" />
             )}
           </div>
           <div className="mb-6">
             <label
-              className="block text-gray-700 text-sm font-bold mb-2"
+              className="block text-gray-700 text-lg font-bold mb-2"
               htmlFor="password"
             >
               Password
@@ -64,23 +74,10 @@ const SignInComponent = () => {
               placeholder="******************"
             />
             {errors.password && errors.password.type === "required" && (
-              <div
-                className="bg-red-100 border mt-2 border-red-400 text-red-700 px-4 py-3 rounded relative"
-                role="alert"
-              >
-                <span className="block sm:inline">Password is required</span>
-              </div>
+              <ErrorString message="Password is required" />
             )}
-
             {errors.password && errors.password.type === "minLength" && (
-              <div
-                className="bg-red-100 border mt-2 border-red-400 text-red-700 px-4 py-3 rounded relative"
-                role="alert"
-              >
-                <span className="block sm:inline">
-                  Legth must be at least 6 symbols
-                </span>
-              </div>
+              <ErrorString message="Legnth must be at least 6 symbols" />
             )}
           </div>
           <div className="flex items-center justify-between">
@@ -93,7 +90,7 @@ const SignInComponent = () => {
           </div>
         </form>
       </div>
-    </div>
+    </motion.div>
   );
 };
 

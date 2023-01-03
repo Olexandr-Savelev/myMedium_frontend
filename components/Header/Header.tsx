@@ -1,11 +1,20 @@
+import { signOut } from "firebase/auth";
 import Link from "next/link";
 import { useState } from "react";
+import { useAuth } from "../../hooks/useAuth";
+import { auth } from "../../pages/_app";
 import NavLink from "../NavLink/NavLink";
 import Burger from "./Burger/Burger";
 import LogoImg from "./Logo/LogoImg";
 import Menu from "./Menu/Menu";
 
 export default function Header(): JSX.Element {
+  const isAuthUser = useAuth();
+
+  const SignOut = () => {
+    signOut(auth);
+  };
+
   const [menu, setMenu] = useState(false);
 
   const toggleMenu = () => {
@@ -36,13 +45,24 @@ export default function Header(): JSX.Element {
           </NavLink>
         </div>
         <div className="hidden md:flex items-center gap-3">
-          <NavLink href="/signin">Sign In</NavLink>
-          <NavLink
-            href="/registration"
-            style="withBorder"
-          >
-            Get Started
-          </NavLink>
+          {isAuthUser ? (
+            <button
+              type="button"
+              onClick={SignOut}
+            >
+              SignOut
+            </button>
+          ) : (
+            <>
+              <NavLink href="/signin">Sign In</NavLink>
+              <NavLink
+                href="/registration"
+                style="withBorder"
+              >
+                Get Started
+              </NavLink>
+            </>
+          )}
         </div>
         <Burger
           menu={menu}

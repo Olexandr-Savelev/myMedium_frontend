@@ -1,5 +1,5 @@
 import { createUserWithEmailAndPassword } from "firebase/auth";
-import { auth } from "./authInitialize";
+import { auth } from "../pages/_app";
 import { IAuthUser } from "./userInterface";
 
 const CreateUser = async ({ email, password }: IAuthUser) => {

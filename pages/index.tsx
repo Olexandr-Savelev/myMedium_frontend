@@ -15,6 +15,7 @@ const Home: NextPage<PostListProps> = ({ postList }) => {
 };
 
 export const getStaticProps = async () => {
+  console.log(process.env.NEXT_PUBLIC_API_KEY);
   const response = await fetch(
     "https://jsonplaceholder.typicode.com/posts?_limit=6"
   );

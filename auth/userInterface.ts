@@ -1,6 +1,7 @@
-export interface IUser extends IAuthUser {
+export interface IUser {
   uid: string;
   accessToken: string;
+  email: string;
 }
 
 export interface IAuthUser {

@@ -1,5 +1,5 @@
 import { signInWithEmailAndPassword } from "firebase/auth";
-import { auth } from "./authInitialize";
+import { auth } from "../pages/_app";
 import { IAuthUser } from "./userInterface";
 
 const onSignIn = ({ email, password }: IAuthUser) => {

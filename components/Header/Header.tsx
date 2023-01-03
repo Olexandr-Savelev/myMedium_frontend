@@ -38,7 +38,7 @@ export default function Header(): JSX.Element {
         <div className="hidden md:flex items-center gap-3">
           <NavLink href="/signin">Sign In</NavLink>
           <NavLink
-            href="/"
+            href="/registration"
             style="withBorder"
           >
             Get Started

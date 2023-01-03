@@ -1,22 +1,25 @@
 import { useForm } from "react-hook-form";
 import ErrorString from "../Error/ErrorString";
 import { motion } from "framer-motion";
-import onSignIn from "../../auth/signinUser";
+import CreateUser from "../../auth/createUser";
 
 interface FormValues {
   email: string;
   password: string;
+  confirmPassword: string;
 }
 
-const SignInComponent = () => {
+const RegistrationPageComponent = () => {
   const {
     register,
     handleSubmit,
     formState: { errors },
+    watch,
   } = useForm<FormValues>();
 
   const onFormSubmit = (data: FormValues) => {
-    onSignIn(data);
+    const { email, password } = data;
+    CreateUser({ email, password });
   };
 
   return (
@@ -29,7 +32,7 @@ const SignInComponent = () => {
           className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4"
           onSubmit={handleSubmit(onFormSubmit)}
         >
-          <h3 className="text-3xl font-bold text-center">SignIn</h3>
+          <h3 className="text-3xl font-bold text-center">Registration</h3>
           <div className="mb-4">
             <label
               className="block text-gray-700 text-lg font-bold mb-2"
@@ -83,12 +86,44 @@ const SignInComponent = () => {
               <ErrorString message="Legnth must be at least 6 symbols" />
             )}
           </div>
+          <div className="mb-6">
+            <label
+              className="block text-gray-700 text-lg font-bold mb-2"
+              htmlFor="password"
+            >
+              Confirm Password
+            </label>
+            <input
+              {...register("confirmPassword", {
+                required: true,
+                validate: (val: string) => {
+                  if (watch("password") != val) {
+                    return "Your passwords do no match";
+                  }
+                },
+              })}
+              className="shadow appearance-none border  rounded w-full py-2 px-3 text-gray-700 mt-2 leading-tight focus:outline-none focus:shadow-outline"
+              name="confirmPassword"
+              aria-invalid={errors.confirmPassword ? "true" : "false"}
+              id="confirmPassword"
+              type="password"
+              placeholder="******************"
+            />
+            {errors.confirmPassword &&
+              errors.confirmPassword.type === "required" && (
+                <ErrorString message="Please confirm your password " />
+              )}
+            {errors.confirmPassword &&
+              errors.confirmPassword.type === "validate" && (
+                <ErrorString message="Passwords must match" />
+              )}
+          </div>
           <div className="flex items-center justify-between">
             <button
               className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
               type="submit"
             >
-              Sign In
+              Sign Up
             </button>
           </div>
         </form>
@@ -97,4 +132,4 @@ const SignInComponent = () => {
   );
 };
 
-export default SignInComponent;
+export default RegistrationPageComponent;

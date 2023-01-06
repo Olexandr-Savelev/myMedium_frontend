@@ -1,5 +1,6 @@
-import { NextPage } from "next";
+import { GetStaticPaths, GetStaticProps, NextPage } from "next";
 import { useRouter } from "next/router";
+import { ParsedUrlQuery } from "querystring";
 import PostPageComponent from "../../components/PostPage/PostPageComponent";
 import { IPostPageProps } from "../../pageInterfaces/PostPageProps";
 
@@ -16,7 +17,7 @@ const PostPage: NextPage<IPostPageProps> = ({ postItem, comments }) => {
   );
 };
 
-export async function getStaticPaths() {
+export const getStaticPaths: GetStaticPaths = async () => {
   return {
     paths: [
       { params: { postSlug: "sth" } },
@@ -24,10 +25,14 @@ export async function getStaticPaths() {
     ],
     fallback: true,
   };
+};
+
+interface IParams extends ParsedUrlQuery {
+  slug: string;
 }
 
-export async function getStaticProps({ params }: any) {
-  const { postSlug } = params;
+export const getStaticProps: GetStaticProps = async (context) => {
+  const { postSlug } = context.params as IParams;
   const postRes = await fetch(
     `https://jsonplaceholder.typicode.com/posts/${postSlug}`
   );
@@ -41,6 +46,6 @@ export async function getStaticProps({ params }: any) {
   return {
     props: { postItem, comments },
   };
-}
+};
 
 export default PostPage;

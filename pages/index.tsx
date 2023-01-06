@@ -1,4 +1,4 @@
-import { NextPage } from "next";
+import { GetStaticProps, NextPage } from "next";
 import Hero from "../components/Hero/Hero";
 import PostList from "../components/PostList/PostList";
 import { Slider } from "../components/Slider/Slider";
@@ -14,8 +14,7 @@ const Home: NextPage<PostListProps> = ({ postList }) => {
   );
 };
 
-export const getStaticProps = async () => {
-  console.log(process.env.NEXT_PUBLIC_API_KEY);
+export const getStaticProps: GetStaticProps = async () => {
   const response = await fetch(
     "https://jsonplaceholder.typicode.com/posts?_limit=6"
   );

@@ -1,7 +1,9 @@
 import { useForm } from "react-hook-form";
 import ErrorString from "../Error/ErrorString";
 import { motion } from "framer-motion";
-import CreateUser from "../../auth/createUser";
+import { createUserWithEmailAndPassword } from "firebase/auth";
+import { auth } from "../../pages/_app";
+import { useRouter } from "next/router";
 
 interface FormValues {
   email: string;
@@ -10,6 +12,7 @@ interface FormValues {
 }
 
 const RegistrationPageComponent = () => {
+  const router = useRouter();
   const {
     register,
     handleSubmit,
@@ -17,9 +20,20 @@ const RegistrationPageComponent = () => {
     watch,
   } = useForm<FormValues>();
 
-  const onFormSubmit = (data: FormValues) => {
+  const onFormSubmit = async (data: FormValues) => {
     const { email, password } = data;
-    CreateUser({ email, password });
+
+    await createUserWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+        const user = userCredential.user;
+        console.log(user);
+        router.push("/signin");
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        console.log(errorCode, errorMessage);
+      });
   };
 
   return (

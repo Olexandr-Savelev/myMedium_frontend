@@ -63,7 +63,7 @@ const RegistrationPageComponent = () => {
               <ErrorString message="Invalid Email" />
             )}
           </div>
-          <div className="mb-6">
+          <div className="mb-3">
             <label
               className="block text-gray-700 text-lg font-bold mb-2"
               htmlFor="password"
@@ -86,7 +86,7 @@ const RegistrationPageComponent = () => {
               <ErrorString message="Legnth must be at least 6 symbols" />
             )}
           </div>
-          <div className="mb-6">
+          <div className="mb-3">
             <label
               className="block text-gray-700 text-lg font-bold mb-2"
               htmlFor="password"

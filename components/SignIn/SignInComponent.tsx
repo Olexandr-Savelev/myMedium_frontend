@@ -1,7 +1,12 @@
 import { useForm } from "react-hook-form";
 import ErrorString from "../Error/ErrorString";
 import { motion } from "framer-motion";
-import onSignIn from "../../auth/signinUser";
+import { useRouter } from "next/router";
+import { signInWithEmailAndPassword } from "firebase/auth";
+import { auth } from "../../pages/_app";
+import { useState } from "react";
+import Error from "next/error";
+import ErrorStringWithHandler from "../Error/ErrorStringWithHandler";
 
 interface FormValues {
   email: string;
@@ -9,14 +14,33 @@ interface FormValues {
 }
 
 const SignInComponent = () => {
+  const router = useRouter();
+  const [error, setError] = useState<Error | undefined>();
+
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm<FormValues>();
 
-  const onFormSubmit = (data: FormValues) => {
-    onSignIn(data);
+  const cleanError = () => {
+    setError(undefined);
+    console.log("CALLBACK");
+  };
+
+  const onSignIn = (data: FormValues) => {
+    const { email, password } = data;
+    setError(undefined);
+    signInWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+        // Signed in
+        const user = userCredential.user;
+        console.log(user);
+        router.push("/");
+      })
+      .catch((error: Error) => {
+        setError(error);
+      });
   };
 
   return (
@@ -27,10 +51,10 @@ const SignInComponent = () => {
       <div className="w-full max-w-xl">
         <form
           className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4"
-          onSubmit={handleSubmit(onFormSubmit)}
+          onSubmit={handleSubmit(onSignIn)}
         >
           <h3 className="text-3xl font-bold text-center">SignIn</h3>
-          <div className="mb-4">
+          <div className="mb-3">
             <label
               className="block text-gray-700 text-lg font-bold mb-2"
               htmlFor="username"
@@ -46,6 +70,7 @@ const SignInComponent = () => {
                   message: "Please enter a valid email",
                 },
               })}
+              onChange={cleanError}
               className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
               name="email"
               aria-invalid={errors.email ? "true" : "false"}
@@ -60,7 +85,7 @@ const SignInComponent = () => {
               <ErrorString message="Invalid Email" />
             )}
           </div>
-          <div className="mb-6">
+          <div className="mb-3">
             <label
               className="block text-gray-700 text-lg font-bold mb-2"
               htmlFor="password"
@@ -69,6 +94,7 @@ const SignInComponent = () => {
             </label>
             <input
               {...register("password", { required: true, minLength: 6 })}
+              onChange={cleanError}
               className="shadow appearance-none border  rounded w-full py-2 px-3 text-gray-700 mt-2 leading-tight focus:outline-none focus:shadow-outline"
               name="password"
               aria-invalid={errors.password ? "true" : "false"}
@@ -81,6 +107,12 @@ const SignInComponent = () => {
             )}
             {errors.password && errors.password.type === "minLength" && (
               <ErrorString message="Legnth must be at least 6 symbols" />
+            )}
+            {error && (
+              <ErrorStringWithHandler
+                setError={setError}
+                message="Wrong email or password."
+              />
             )}
           </div>
           <div className="flex items-center justify-between">

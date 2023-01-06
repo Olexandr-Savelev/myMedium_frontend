@@ -25,7 +25,7 @@ export default function Header(): JSX.Element {
 
   return (
     <header className="relative border-b-2 border-slate-400 ">
-      <div className="max-w-7xl flex justify-between items-center mx-auto py-[15px] px-[15px]">
+      <div className="max-w-7xl flex justify-between items-center mx-auto py-3 px-3">
         <div className="flex gap-[15px] items-center">
           <Link href="/">
             <a>

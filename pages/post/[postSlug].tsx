@@ -1,6 +1,8 @@
 import { GetStaticPaths, GetStaticProps, NextPage } from "next";
-import { useRouter } from "next/router";
 import { ParsedUrlQuery } from "querystring";
+
+import { useRouter } from "next/router";
+
 import PostPageComponent from "../../components/PostPage/PostPageComponent";
 import { IPostPageProps } from "../../pageInterfaces/PostPageProps";
 
@@ -44,7 +46,10 @@ export const getStaticProps: GetStaticProps = async (context) => {
   const comments = await commetsRes.json();
 
   return {
-    props: { postItem, comments },
+    props: {
+      postItem,
+      comments,
+    },
   };
 };
 

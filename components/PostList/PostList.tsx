@@ -27,7 +27,7 @@ const PostList: FC<PostListProps> = ({ postList }) => {
       loader={<p style={{ textAlign: "center" }}>LOADING...</p>}
       endMessage={<p style={{ textAlign: "center" }}>NO MORE POSTS</p>}
     >
-      <div className="grid sm:grid-cols-2 gap-[10px] m-2 max-w-7xl mx-auto md:grid-cols-2 lg:grid-cols-3">
+      <div className="grid sm:grid-cols-2 gap-[10px] m-2 max-w-7xl mx-auto md:grid-cols-2 lg:grid-cols-2">
         {posts.map((postItem) => {
           return (
             <PostItem

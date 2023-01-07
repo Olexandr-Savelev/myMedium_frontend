@@ -1,14 +1,20 @@
-import { signOut } from "firebase/auth";
-import Link from "next/link";
 import { useState } from "react";
 import { useAuth } from "../../hooks/useAuth";
+
 import { auth } from "../../pages/_app";
+import { signOut } from "firebase/auth";
+
+import Link from "next/link";
 import NavLink from "../NavLink/NavLink";
 import Burger from "./Burger/Burger";
 import LogoImg from "./Logo/LogoImg";
 import Menu from "./Menu/Menu";
 
-export default function Header(): JSX.Element {
+interface IHeader {
+  isSticky?: boolean;
+}
+
+export default function Header(props: IHeader): JSX.Element {
   const isAuthUser = useAuth();
 
   const SignOut = () => {
@@ -24,7 +30,14 @@ export default function Header(): JSX.Element {
   };
 
   return (
-    <header className="relative border-b-2 border-slate-400 ">
+    <header
+      className="relative border-b-2 border-slate-400 bg-white z-50"
+      style={
+        props.isSticky
+          ? { position: "sticky", top: "0", backgroundColor: "rgb(250 204 21)" }
+          : {}
+      }
+    >
       <div className="max-w-7xl flex justify-between items-center mx-auto py-3 px-3">
         <div className="flex gap-[15px] items-center">
           <Link href="/">

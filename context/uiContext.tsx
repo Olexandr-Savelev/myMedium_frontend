@@ -5,6 +5,7 @@ import {
   FC,
   ReactNode,
   SetStateAction,
+  useEffect,
   useState,
 } from "react";
 
@@ -20,8 +21,14 @@ interface IUIContext {
 }
 
 const UIPovider: FC<ContextProps> = ({ children }) => {
-  const router = useRouter();
   const [isHeaderSticky, setIsHeaderSticky] = useState(false);
+  const router = useRouter();
+
+  useEffect(() => {
+    if (router.asPath !== "/") {
+      setIsHeaderSticky(false);
+    }
+  }, [router.asPath]);
 
   const value = {
     isHeaderSticky,

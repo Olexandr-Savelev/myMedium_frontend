@@ -19,7 +19,11 @@ const NavLink: FC<NavLinkProps> = ({
       passHref
     >
       <a
-        style={pathname == href ? { color: "#9c9c9c" } : {}}
+        style={
+          pathname == href
+            ? { color: "#9c9c9c", textDecoration: "underline" }
+            : {}
+        }
         className={cn([styles.link], {
           [styles.withBorder]: style === "withBorder",
           [styles.withBG]: style === "withBG",

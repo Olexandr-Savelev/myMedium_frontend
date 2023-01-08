@@ -7,6 +7,10 @@
     border-radius: 20px;
     color: variable.$text-main-color;
     font-size: 17px;
+    transition: color 0.5s ease-in-out;
+    &:hover {
+        text-decoration: underline;
+    }
     @media (max-width: 767px) {
         display: none;
     }

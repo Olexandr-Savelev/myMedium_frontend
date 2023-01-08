@@ -9,6 +9,7 @@ import TopUsersList from "../components/TopUsersLIst/TopUsersList";
 
 import { IndexPageProps } from "../pageInterfaces/IndexPageProps";
 import { UIContext } from "../context/uiContext";
+import TopPosts from "../components/PostList/TopPosts/TopPosts";
 
 const Home: NextPage<IndexPageProps> = ({ postList, usersList }) => {
   const { setIsHeaderSticky } = useContext(UIContext);
@@ -16,6 +17,7 @@ const Home: NextPage<IndexPageProps> = ({ postList, usersList }) => {
 
   useEffect(() => {
     inView ? setIsHeaderSticky(false) : setIsHeaderSticky(true);
+    console.log(inView);
   }, [inView]);
 
   return (
@@ -23,11 +25,12 @@ const Home: NextPage<IndexPageProps> = ({ postList, usersList }) => {
       <Hero />
       <span ref={ref}></span>
       <Slider />
+      <TopPosts posts={postList.slice(0, 6)} />
       <div className="flex gap-4">
         <div className="flex-auto w-[65%]">
           <PostList postList={postList} />
         </div>
-        <div className="flex-auto w-[35%] max-h-[50vh] border-solid border-b-[1px] px-4 pb-4  border-slate-400 position: sticky top-[70px]">
+        <div className="flex-auto w-[35%] max-h-[50vh] border-solid border-b-[1px] px-4 pb-4  border-slate-400 position: sticky top-[78px]">
           <TopUsersList usersList={usersList} />
         </div>
       </div>

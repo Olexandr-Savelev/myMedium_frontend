@@ -37,7 +37,7 @@ export default function Header(): JSX.Element {
           : {}
       }
     >
-      <div className="max-w-7xl flex justify-between items-center mx-auto py-3 px-3">
+      <div className="max-w-7xl flex justify-between items-center mx-auto py-4 px-3">
         <div className="flex gap-[15px] items-center">
           <Link href="/">
             <a>

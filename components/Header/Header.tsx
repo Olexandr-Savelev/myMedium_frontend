@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { useAuth } from "../../hooks/useAuth";
 
 import { auth } from "../../pages/_app";
@@ -9,13 +9,12 @@ import NavLink from "../NavLink/NavLink";
 import Burger from "./Burger/Burger";
 import LogoImg from "./Logo/LogoImg";
 import Menu from "./Menu/Menu";
+import { UIContext } from "../../context/uiContext";
 
-interface IHeader {
-  isSticky?: boolean;
-}
-
-export default function Header(props: IHeader): JSX.Element {
+export default function Header(): JSX.Element {
   const isAuthUser = useAuth();
+
+  const { isStickyHeader } = useContext(UIContext);
 
   const SignOut = () => {
     signOut(auth);
@@ -31,9 +30,9 @@ export default function Header(props: IHeader): JSX.Element {
 
   return (
     <header
-      className="relative border-b-2 border-slate-400 bg-white z-50"
+      className="relative border-b-2 border-slate-400 bg-white z-50 transition ease-in-out delay-150"
       style={
-        props.isSticky
+        isStickyHeader
           ? { position: "sticky", top: "0", backgroundColor: "rgb(250 204 21)" }
           : {}
       }

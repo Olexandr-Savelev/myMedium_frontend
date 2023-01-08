@@ -5,17 +5,18 @@ import Layout from "../components/Layout/Layout";
 import { firebaseConfig } from "../firebase.config";
 import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
+import UIPovider from "../context/uiContext";
 
 export const app = initializeApp(firebaseConfig);
 export const auth = getAuth();
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
-    <div>
+    <UIPovider>
       <Layout>
         <Component {...pageProps} />
       </Layout>
-    </div>
+    </UIPovider>
   );
 }
 

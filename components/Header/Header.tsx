@@ -14,7 +14,7 @@ import { UIContext } from "../../context/uiContext";
 export default function Header(): JSX.Element {
   const isAuthUser = useAuth();
 
-  const { isStickyHeader } = useContext(UIContext);
+  const { isHeaderSticky } = useContext(UIContext);
 
   const SignOut = () => {
     signOut(auth);
@@ -32,7 +32,7 @@ export default function Header(): JSX.Element {
     <header
       className="relative border-b-2 border-slate-400 bg-white z-50 transition ease-in-out delay-150"
       style={
-        isStickyHeader
+        isHeaderSticky
           ? { position: "sticky", top: "0", backgroundColor: "rgb(250 204 21)" }
           : {}
       }

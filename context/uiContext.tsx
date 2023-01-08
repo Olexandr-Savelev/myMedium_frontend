@@ -1,6 +1,12 @@
 import { useRouter } from "next/router";
-import { createContext, FC, ReactNode, useEffect, useState } from "react";
-import { useInView } from "react-intersection-observer";
+import {
+  createContext,
+  Dispatch,
+  FC,
+  ReactNode,
+  SetStateAction,
+  useState,
+} from "react";
 
 export const UIContext = createContext<IUIContext>(null!);
 
@@ -9,28 +15,17 @@ type ContextProps = {
 };
 
 interface IUIContext {
-  ref: (node?: Element | null | undefined) => void;
-  isStickyHeader: boolean;
+  isHeaderSticky: boolean;
+  setIsHeaderSticky: Dispatch<SetStateAction<boolean>>;
 }
 
 const UIPovider: FC<ContextProps> = ({ children }) => {
   const router = useRouter();
-  const [isStickyHeader, setIsStickyHeader] = useState(false);
-  const { ref, inView } = useInView({
-    threshold: 1,
-  });
-
-  useEffect(() => {
-    if (router.asPath !== "/") {
-      setIsStickyHeader(false);
-    } else {
-      inView ? setIsStickyHeader(false) : setIsStickyHeader(true);
-    }
-  }, [inView]);
+  const [isHeaderSticky, setIsHeaderSticky] = useState(false);
 
   const value = {
-    ref,
-    isStickyHeader,
+    isHeaderSticky,
+    setIsHeaderSticky,
   };
 
   return <UIContext.Provider value={value}>{children}</UIContext.Provider>;

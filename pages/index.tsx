@@ -1,7 +1,6 @@
-import { useContext, useEffect, useState } from "react";
-import { useViewportScroll } from "framer-motion";
+import { useContext, useEffect } from "react";
 import { GetStaticProps, NextPage } from "next";
-import { InView, useInView } from "react-intersection-observer";
+import { useInView } from "react-intersection-observer";
 
 import Hero from "../components/Hero/Hero";
 import PostList from "../components/PostList/PostList";
@@ -12,7 +11,12 @@ import { IndexPageProps } from "../pageInterfaces/IndexPageProps";
 import { UIContext } from "../context/uiContext";
 
 const Home: NextPage<IndexPageProps> = ({ postList, usersList }) => {
-  const { ref } = useContext(UIContext);
+  const { setIsHeaderSticky } = useContext(UIContext);
+  const { ref, inView } = useInView();
+
+  useEffect(() => {
+    inView ? setIsHeaderSticky(false) : setIsHeaderSticky(true);
+  }, [inView]);
 
   return (
     <>

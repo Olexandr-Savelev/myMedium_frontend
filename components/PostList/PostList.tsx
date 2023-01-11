@@ -1,5 +1,7 @@
 import { FC, useState } from "react";
+
 import InfiniteScroll from "react-infinite-scroll-component";
+
 import { PostListProps } from "../../pageInterfaces/IndexPageProps";
 import PostItem from "../PostItem/PostItem";
 
@@ -27,7 +29,7 @@ const PostList: FC<PostListProps> = ({ postList }) => {
       loader={<p style={{ textAlign: "center" }}>LOADING...</p>}
       endMessage={<p style={{ textAlign: "center" }}>NO MORE POSTS</p>}
     >
-      <div className="grid sm:grid-cols-2 gap-[10px] m-2 max-w-7xl mx-auto md:grid-cols-2 lg:grid-cols-2">
+      <div className="flex gap-[15px] flex-col">
         {posts.map((postItem) => {
           return (
             <PostItem

@@ -4,7 +4,7 @@
     border: 1px solid variable.$border-color;
     border-left: none;
     border-right: none;
-    padding: 10px;
+    padding: 15px;
     border-radius: 7px;
 }
 
@@ -13,9 +13,9 @@
 }
 
 .post_number {
-    border: 1px solid variable.$border-color;
+    border: 1px solid black;
     border-radius: 50%;
-    color: variable.$border-color;
+    color: black;
     font-size: 3rem;
     display: block;
     min-width: 80px;

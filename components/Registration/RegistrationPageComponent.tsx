@@ -39,7 +39,7 @@ const RegistrationPageComponent = () => {
   return (
     <motion.div
       animate={{ opacity: [0, 1] }}
-      className="w-full flex flex-col items-center mt-4"
+      className="w-full flex flex-col items-center absolute top-[50%] translate-y-[-50%]"
     >
       <div className="w-full max-w-xl">
         <form

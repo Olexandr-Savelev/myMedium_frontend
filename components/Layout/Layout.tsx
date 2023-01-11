@@ -1,10 +1,12 @@
+import Footer from "../Footer/Footer";
 import Header from "../Header/Header";
 
 export default function Layout({ children }: React.PropsWithChildren<{}>) {
   return (
-    <>
+    <div className="min-h-screen min-w-screen flex flex-col">
       <Header />
-      <main>{children}</main>
-    </>
+      <main className="flex-[1_0_auto] relative">{children}</main>
+      <Footer />
+    </div>
   );
 }

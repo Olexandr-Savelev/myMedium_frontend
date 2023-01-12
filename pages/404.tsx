@@ -1,6 +1,6 @@
-import { FC } from "react";
+import { NextPage } from "next";
 
-const FourOhFour: FC = () => {
+const FourOhFour: NextPage = () => {
   return (
     <div className="min-w-full flex items-center justify-center absolute top-[50%] translate-y-[-50%]">
       <h2 className="text-3xl">404</h2>

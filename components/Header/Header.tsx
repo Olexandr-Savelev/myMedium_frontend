@@ -30,7 +30,7 @@ export default function Header(): JSX.Element {
 
   return (
     <header
-      className="relative border-b-2 border-slate-400 bg-white z-50 transition ease-in-out delay-150"
+      className="relative drop-shadow-md border-b-[1px] border-slate-400 bg-white z-50 transition ease-in-out delay-150"
       style={
         isHeaderSticky
           ? { position: "sticky", top: "0", backgroundColor: "rgb(250 204 21)" }

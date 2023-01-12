@@ -1,6 +1,5 @@
 import { IPostItem } from "../../pageInterfaces/IndexPageProps";
 import Link from "next/link";
-import styles from "./PostItem.module.scss";
 import { FC, useEffect } from "react";
 import { motion, useAnimation } from "framer-motion";
 import { useInView } from "react-intersection-observer";
@@ -26,19 +25,24 @@ const PostItem: FC<TopPostItemProps> = ({ place, ...postItem }) => {
 
   return (
     <motion.div
+      className="w-full flex flex-col justify-between py-4 px-8 bg-white shadow-lg rounded-lg my-4"
       ref={ref}
       animate={controls}
       initial={place ? "visible" : "hidden"}
       variants={postVariants}
     >
-      <div className={styles.post}>
-        <h3 className={styles.title}>
-          {place && <span className={styles.post_number}>{place}</span>}
-          <Link href={`post/${postItem.id}`}>
-            <a>{postItem.title}</a>
-          </Link>
-        </h3>
-        <p className={styles.text}>{postItem.body}</p>
+      <div>
+        <h2 className="text-gray-800 text-3xl font-semibold">
+          {postItem.title}
+        </h2>
+        <p className="mt-2 text-gray-600">{postItem.body}</p>
+      </div>
+      <div className="flex justify-end mt-auto">
+        <Link href={`post/${postItem.id}`}>
+          <a className="inline-block px-6 py-2.5 bg-slate-500 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-slate-700 hover:shadow-lg focus:bg-slate-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-slate-800 active:shadow-lg transition duration-150 ease-in-out">
+            Details
+          </a>
+        </Link>
       </div>
     </motion.div>
   );

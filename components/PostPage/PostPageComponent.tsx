@@ -18,22 +18,30 @@ const PostPageComponent: FC<IPostPageProps> = ({ postItem }) => {
         <p className={styles.text}>{postItem.body}</p>
       </div>
       <ul className={styles.comment_list}>
-        <span style={{ textAlign: "center" }}>Comments:</span>
+        <span
+          className="text-gray-600 text-2xl font-semibold"
+          style={{ textAlign: "center" }}
+        >
+          Comments:
+        </span>
         {comments.map(
           (comment: IComment): JSX.Element => (
-            <li
-              className={styles.comment_wrapper}
-              key={comment.id}
-            >
-              <header className={styles.comment_header}>
-                <div>
-                  <h4 className={styles.comment_heading}>
-                    Name: {comment.name}
-                  </h4>
-                  <p className={styles.comment_email}>Email: {comment.email}</p>
+            <li key={comment.id}>
+              <div className="flex justify-center mb-3">
+                <div className="rounded-lg shadow-lg bg-white min-w-[100%]">
+                  <div className="p-4">
+                    <h5 className="text-gray-900 text-xl font-medium mb-2">
+                      Name: {comment.name}
+                    </h5>
+                    <h5 className="text-gray-800 text-xl font-medium mb-2">
+                      Email: {comment.email}
+                    </h5>
+                    <p className="text-gray-700 text-base mb-2">
+                      {comment.body}
+                    </p>
+                  </div>
                 </div>
-              </header>
-              <p className={styles.comment_text}>{comment.body}</p>
+              </div>
             </li>
           )
         )}

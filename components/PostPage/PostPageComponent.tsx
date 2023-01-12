@@ -1,9 +1,16 @@
-import Image from "next/image";
-import { FC } from "react";
+import { FC, useEffect, useState } from "react";
 import { IComment, IPostPageProps } from "../../pageInterfaces/PostPageProps";
 import styles from "./PostPageComponent.module.scss";
 
-const PostPageComponent: FC<IPostPageProps> = ({ postItem, comments }) => {
+const PostPageComponent: FC<IPostPageProps> = ({ postItem }) => {
+  const [comments, setCommets] = useState<IComment[]>([]);
+
+  useEffect(() => {
+    fetch(`https://jsonplaceholder.typicode.com/posts/${postItem.id}/comments`)
+      .then((res) => res.json().then((comments) => setCommets(comments)))
+      .catch((err) => console.log(err));
+  }, []);
+
   return (
     <div className={styles.postpage_wrapper}>
       <div className={styles.post_wrapper}>
@@ -19,15 +26,6 @@ const PostPageComponent: FC<IPostPageProps> = ({ postItem, comments }) => {
               key={comment.id}
             >
               <header className={styles.comment_header}>
-                <Image
-                  placeholder="blur"
-                  blurDataURL="../../public/Profile_avatar_placeholder_large.png"
-                  className={styles.comment_img}
-                  src="https://xsgames.co/randomusers/avatar.php?g=pixel"
-                  alt="ava"
-                  height={50}
-                  width={50}
-                />
                 <div>
                   <h4 className={styles.comment_heading}>
                     Name: {comment.name}

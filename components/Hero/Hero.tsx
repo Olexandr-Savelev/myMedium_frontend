@@ -1,14 +1,27 @@
 import { motion } from "framer-motion";
+import { useContext, useEffect } from "react";
+import { useInView } from "react-intersection-observer";
+import { UIContext } from "../../context/uiContext";
 import styles from "./Hero.module.scss";
 
 export default function Hero() {
+  const { setIsHeaderSticky } = useContext(UIContext);
+  const { ref, inView } = useInView();
+
+  useEffect(() => {
+    inView ? setIsHeaderSticky(false) : setIsHeaderSticky(true);
+  }, [inView]);
+
   const variants = {
     visible: { opacity: 1, y: 0 },
     hidden: { opacity: 0, y: -100 },
   };
 
   return (
-    <div className="max-w-7xl flex bg-yellow-400 min-h-[300px] max-h-[80vw] mx-auto overflow-hidden">
+    <div
+      className="flex bg-yellow-400 min-h-[300px] max-h-[80vw] overflow-hidden"
+      ref={ref}
+    >
       <div className="space-y-3 max-w-[50%] leading-[1.8rem] m-auto text-left text-xl sm:text-3xl sm:leading-[2.2rem] md:leading-[3.2rem] md:text-5xl md:px-[20px] ">
         <motion.div
           initial="hidden"

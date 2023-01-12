@@ -2,7 +2,6 @@ import { IPostItem } from "./IndexPageProps";
 
 export interface IPostPageProps {
   postItem: IPostItem;
-  comments: IComment[];
 }
 
 export interface IComment {

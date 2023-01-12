@@ -1,15 +1,15 @@
 import { FC } from "react";
 import { TopUsersListProps } from "../../pageInterfaces/IndexPageProps";
-import { TopUserItem } from "./TopUserItem";
+import { UserItem } from "./UserItem";
 
-const TopUsersList: FC<TopUsersListProps> = ({ usersList }) => {
+const UsersList: FC<TopUsersListProps> = ({ usersList }) => {
   return (
     <>
-      <h3 className="text-center">Top users:</h3>
+      <h3 className="text-center">Users:</h3>
       <ul className="flex flex-wrap">
         {usersList.map((user) => (
           <li key={user.id}>
-            <TopUserItem userName={user.name} />
+            <UserItem userName={user.name} />
           </li>
         ))}
       </ul>
@@ -17,4 +17,4 @@ const TopUsersList: FC<TopUsersListProps> = ({ usersList }) => {
   );
 };
 
-export default TopUsersList;
+export default UsersList;

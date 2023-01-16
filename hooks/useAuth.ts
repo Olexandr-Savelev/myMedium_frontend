@@ -1,17 +1,20 @@
 import { onAuthStateChanged } from "firebase/auth";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { auth } from "../pages/_app";
+import { User as FirebaseUser } from "firebase/auth";
 
 export const useAuth = () => {
-  const [isAuthUser, setIsAuthUser] = useState(false);
+  const [firebaseUser, setFirebaseUser] = useState<FirebaseUser | null>(null);
 
-  onAuthStateChanged(auth, (user) => {
-    if (user) {
-      setIsAuthUser(true);
-    } else {
-      setIsAuthUser(false);
-    }
-  });
+  useEffect(() => {
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        setFirebaseUser(user);
+      } else {
+        setFirebaseUser(null);
+      }
+    });
+  }, [auth]);
 
-  return isAuthUser;
+  return firebaseUser;
 };

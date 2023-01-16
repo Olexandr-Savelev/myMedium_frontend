@@ -12,7 +12,7 @@ import Menu from "./Menu/Menu";
 import { UIContext } from "../../context/uiContext";
 
 export default function Header(): JSX.Element {
-  const isAuthUser = useAuth();
+  const firebaseUser = useAuth();
 
   const { isHeaderSticky } = useContext(UIContext);
 
@@ -30,7 +30,7 @@ export default function Header(): JSX.Element {
 
   return (
     <header
-      className="relative drop-shadow-md border-b-[1px] border-slate-400 bg-white z-50 transition ease-in-out delay-150"
+      className="relative drop-shadow-md border-b-[1px] border-slate-400 bg-white z-40 transition ease-in-out delay-150"
       style={
         isHeaderSticky
           ? { position: "sticky", top: "0", backgroundColor: "rgb(250 204 21)" }
@@ -57,7 +57,7 @@ export default function Header(): JSX.Element {
           </NavLink>
         </div>
         <div className="hidden md:flex items-center gap-3">
-          {isAuthUser ? (
+          {firebaseUser ? (
             <button
               type="button"
               onClick={SignOut}

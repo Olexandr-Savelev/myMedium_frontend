@@ -1,8 +1,11 @@
 import { Dispatch, FC, SetStateAction, useRef, useState } from "react";
+
 import { useAuth } from "../../../hooks/useAuth";
+
+import ErrorStringWithHandler from "../../Error/ErrorStringWithHandler";
+
 import { IPostItem } from "../../../pageInterfaces/IndexPageProps";
 import { IComment } from "../../../pageInterfaces/PostPageProps";
-import ErrorStringWithHandler from "../../Error/ErrorStringWithHandler";
 
 interface IModal {
   post: IPostItem;

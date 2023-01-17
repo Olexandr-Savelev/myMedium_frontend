@@ -59,6 +59,7 @@ export default function Header(): JSX.Element {
         <div className="hidden md:flex items-center gap-3">
           {firebaseUser ? (
             <button
+              className="font-bold hover:underline"
               type="button"
               onClick={SignOut}
             >

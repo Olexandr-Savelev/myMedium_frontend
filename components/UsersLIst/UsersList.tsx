@@ -1,6 +1,9 @@
 import { FC } from "react";
-import { IUser, TopUsersListProps } from "../../pageInterfaces/IndexPageProps";
+
 import { UserItem } from "./UserItem";
+
+import { TopUsersListProps } from "../../pageInterfaces/IndexPageProps";
+import { IUser } from "../../pageInterfaces/UserPageProps";
 
 const UsersList: FC<TopUsersListProps> = ({ usersList }) => {
   return (

@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { FC } from "react";
-import { IUser } from "../../pageInterfaces/IndexPageProps";
+import { IUser } from "../../pageInterfaces/UserPageProps";
 
 export const UserItem: FC<IUser> = (user) => {
   return (

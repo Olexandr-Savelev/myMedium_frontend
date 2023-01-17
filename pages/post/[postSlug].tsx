@@ -5,6 +5,8 @@ import { useRouter } from "next/router";
 
 import PostPageComponent from "../../components/PostPage/PostPageComponent";
 import { IPostPageProps } from "../../pageInterfaces/PostPageProps";
+import { getPosts, getSinglePost } from "../../services/posts-service";
+import { IPostItem } from "../../pageInterfaces/IndexPageProps";
 
 const PostPage: NextPage<IPostPageProps> = ({ postItem }) => {
   const router = useRouter();
@@ -15,25 +17,25 @@ const PostPage: NextPage<IPostPageProps> = ({ postItem }) => {
 };
 
 export const getStaticPaths: GetStaticPaths = async () => {
+  const posts = await getPosts();
+  const paths = posts!.map((post: IPostItem) => ({
+    params: { postSlug: "" + post.id },
+  }));
+
   return {
-    paths: [
-      { params: { postSlug: "sth" } },
-      { params: { postSlug: "sth-else" } },
-    ],
+    paths,
     fallback: true,
   };
 };
 
 interface IParams extends ParsedUrlQuery {
-  slug: string;
+  postSlug: string;
 }
 
-export const getStaticProps: GetStaticProps = async (context) => {
-  const { postSlug } = context.params as IParams;
-  const postRes = await fetch(
-    `https://jsonplaceholder.typicode.com/posts/${postSlug}`
-  );
-  const postItem = await postRes.json();
+export const getStaticProps: GetStaticProps = async ({ params }) => {
+  const { postSlug } = params as IParams;
+
+  const postItem = await getSinglePost(postSlug);
 
   return {
     props: {

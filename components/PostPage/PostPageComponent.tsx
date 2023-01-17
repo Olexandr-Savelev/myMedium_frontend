@@ -7,9 +7,11 @@ import CommentItem from "./CommentItem/CommentItem";
 import CommentModal from "./CommentModal/CommentModal";
 
 import { IComment, IPostPageProps } from "../../pageInterfaces/PostPageProps";
+import Spinner from "../Spinner/Spinner";
 
 const PostPageComponent: FC<IPostPageProps> = ({ postItem }) => {
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+  const [loading, setLoading] = useState<boolean>(false);
   const [comments, setCommets] = useState<IComment[]>([]);
   const firebaseUser = useAuth();
 
@@ -18,8 +20,13 @@ const PostPageComponent: FC<IPostPageProps> = ({ postItem }) => {
   };
 
   useEffect(() => {
+    setLoading(true);
     fetch(`https://jsonplaceholder.typicode.com/posts/${postItem.id}/comments`)
-      .then((res) => res.json().then((comments) => setCommets(comments)))
+      .then((res) =>
+        res.json().then((comments) => {
+          setCommets(comments), setLoading(false);
+        })
+      )
       .catch((err) => console.log(err));
   }, []);
 

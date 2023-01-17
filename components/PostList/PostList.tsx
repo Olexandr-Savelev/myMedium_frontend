@@ -4,6 +4,7 @@ import InfiniteScroll from "react-infinite-scroll-component";
 
 import { PostListProps } from "../../pageInterfaces/IndexPageProps";
 import PostItem from "../PostItem/PostItem";
+import Spinner from "../Spinner/Spinner";
 
 const PostList: FC<PostListProps> = ({ postList }) => {
   const [posts, setPosts] = useState(postList);
@@ -26,7 +27,7 @@ const PostList: FC<PostListProps> = ({ postList }) => {
       dataLength={posts.length}
       next={getMorePost}
       hasMore={hasMore}
-      loader={<p style={{ textAlign: "center" }}>LOADING...</p>}
+      loader={<Spinner />}
       endMessage={<p style={{ textAlign: "center" }}>NO MORE POSTS</p>}
     >
       <div className="flex gap-[15px] flex-col">

@@ -4,9 +4,10 @@ import Hero from "../components/Hero/Hero";
 import PostList from "../components/PostList/PostList";
 import { Slider } from "../components/Slider/Slider";
 import UsersList from "../components/UsersLIst/UsersList";
+import TopPosts from "../components/PostList/TopPosts/TopPosts";
 
 import { IndexPageProps } from "../pageInterfaces/IndexPageProps";
-import TopPosts from "../components/PostList/TopPosts/TopPosts";
+
 import { getAllUsers } from "../services/users-service";
 import { getPosts } from "../services/posts-service";
 

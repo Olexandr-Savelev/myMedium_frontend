@@ -1,9 +1,9 @@
 import { GetStaticPaths, GetStaticProps, NextPage } from "next";
 import { ParsedUrlQuery } from "querystring";
-import UserPageComponent from "../../components/UserPage/UserPageComponent";
+import UserPageComponent from "../../../components/UserPage/UserPageComponent";
 
-import { IUser, IUserPageProps } from "../../pageInterfaces/UserPageProps";
-import { getAllUsers, getSingleUser } from "../../services/users-service";
+import { IUser, IUserPageProps } from "../../../pageInterfaces/UserPageProps";
+import { getAllUsers, getSingleUser } from "../../../services/users-service";
 
 const UserPage: NextPage<IUserPageProps> = ({ user }) => {
   return <UserPageComponent user={user} />;

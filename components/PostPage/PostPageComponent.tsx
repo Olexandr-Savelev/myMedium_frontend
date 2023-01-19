@@ -61,12 +61,12 @@ const PostPageComponent: FC<IPostPageProps> = ({ postItem }) => {
           />
         )}
       </div>
-
       {firebaseUser ? (
         <ul className="flex flex-col">
           <span className="text-gray-600 text-2xl font-semibold">
             Comments:
           </span>
+          {loading && <Spinner />}
           {comments.map(
             (comment: IComment): JSX.Element => (
               <li

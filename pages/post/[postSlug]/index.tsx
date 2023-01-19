@@ -3,12 +3,12 @@ import { ParsedUrlQuery } from "querystring";
 
 import { useRouter } from "next/router";
 
-import PostPageComponent from "../../components/PostPage/PostPageComponent";
-import Spinner from "../../components/Spinner/Spinner";
+import PostPageComponent from "../../../components/PostPage/PostPageComponent";
+import Spinner from "../../../components/Spinner/Spinner";
 
-import { getPosts, getSinglePost } from "../../services/posts-service";
-import { IPostItem } from "../../pageInterfaces/IndexPageProps";
-import { IPostPageProps } from "../../pageInterfaces/PostPageProps";
+import { getPosts, getSinglePost } from "../../../services/posts-service";
+import { IPostItem } from "../../../pageInterfaces/IndexPageProps";
+import { IPostPageProps } from "../../../pageInterfaces/PostPageProps";
 
 const PostPage: NextPage<IPostPageProps> = ({ postItem }) => {
   const router = useRouter();

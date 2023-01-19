@@ -1,14 +1,11 @@
-import { IPostItem } from "../../pageInterfaces/IndexPageProps";
-import Link from "next/link";
 import { FC, useEffect } from "react";
-import { motion, useAnimation } from "framer-motion";
+
+import { useAnimation, motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
+import Link from "next/link";
+import { IAlbumItem } from "../../pageInterfaces/AlbumPageProps";
 
-interface TopPostItemProps extends IPostItem {
-  place?: number;
-}
-
-const PostItem: FC<TopPostItemProps> = ({ place, ...postItem }) => {
+const AlbumItem: FC<IAlbumItem> = ({ ...albumItem }) => {
   const controls = useAnimation();
   const [ref, inView] = useInView();
 
@@ -28,17 +25,14 @@ const PostItem: FC<TopPostItemProps> = ({ place, ...postItem }) => {
       className="w-full flex flex-col justify-between py-4 px-8 bg-white shadow-lg rounded-lg my-4"
       ref={ref}
       animate={controls}
-      initial={place ? "visible" : "hidden"}
+      initial={"hidden"}
       variants={postVariants}
     >
-      <div>
+      <div className="flex justify-between">
         <h2 className="text-gray-800 text-3xl font-semibold">
-          {postItem.title}
+          {albumItem.title}
         </h2>
-        <p className="mt-2 text-gray-600">{postItem.body}</p>
-      </div>
-      <div className="flex justify-end mt-2">
-        <Link href={`/post/${postItem.id}`}>
+        <Link href={`/photos?albumId=${albumItem.id}`}>
           <a className="inline-block px-6 py-2.5 bg-slate-500 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-slate-700 hover:shadow-lg focus:bg-slate-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-slate-800 active:shadow-lg transition duration-150 ease-in-out">
             Details
           </a>
@@ -48,4 +42,4 @@ const PostItem: FC<TopPostItemProps> = ({ place, ...postItem }) => {
   );
 };
 
-export default PostItem;
+export default AlbumItem;

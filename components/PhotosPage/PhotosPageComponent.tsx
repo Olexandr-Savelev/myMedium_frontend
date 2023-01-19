@@ -1,5 +1,6 @@
-import Image from "next/image";
 import { FC } from "react";
+import Image from "next/image";
+
 import { IPhotosPage } from "../../pageInterfaces/PhotoPageProps";
 
 const PhotosPageComponent: FC<IPhotosPage> = ({ photos }) => {
@@ -11,21 +12,20 @@ const PhotosPageComponent: FC<IPhotosPage> = ({ photos }) => {
       {photos.map((photo) => (
         <div
           key={photo.id}
-          className="flex flex-col items-center bg-white border rounded-lg shadow-md w-full md:flex-row mb-3"
+          className="flex flex-col items-center bg-white border rounded-lg shadow-md w-full mb-3"
         >
           <Image
-            className="object-cover w-full rounded-t-lg h-96 md:h-auto md:w-48 md:rounded-none md:rounded-l-lg"
+            className="object-cover w-full rounded-t-lg h-96 md:h-auto md:rounded-none md:rounded-l-lg"
             src={photo.url}
             alt={photo.title}
             width={600}
             height={600}
             loader={loaderProp}
+            loading="lazy"
           />
-          <div className="flex flex-col justify-between p-4 leading-normal">
-            <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900">
-              {photo.title}
-            </h5>
-          </div>
+          <h5 className="mb-2 p-3 text-2xl font-bold tracking-tight text-gray-900">
+            {photo.title}
+          </h5>
         </div>
       ))}
     </div>

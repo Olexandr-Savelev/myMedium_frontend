@@ -28,12 +28,12 @@ const AlbumItem: FC<IAlbumItem> = ({ ...albumItem }) => {
       initial={"hidden"}
       variants={postVariants}
     >
-      <div className="flex justify-between">
-        <h2 className="text-gray-800 text-3xl font-semibold">
+      <div className="sm:flex justify-between">
+        <h2 className="mb-2 text-gray-800 text-3xl font-semibold sm:m-0">
           {albumItem.title}
         </h2>
         <Link href={`/photos?albumId=${albumItem.id}`}>
-          <a className="inline-block px-6 py-2.5 bg-slate-500 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-slate-700 hover:shadow-lg focus:bg-slate-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-slate-800 active:shadow-lg transition duration-150 ease-in-out">
+          <a className="inline-block text-center w-full h-max px-6 py-2.5 bg-slate-500 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-slate-700 hover:shadow-lg focus:bg-slate-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-slate-800 active:shadow-lg transition duration-150 ease-in-out sm:w-auto">
             Photos
           </a>
         </Link>

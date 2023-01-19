@@ -16,6 +16,7 @@ const PhotosPage: NextPage = () => {
   }, [router.query.albumId]);
 
   if (photos.length === 0) return <Spinner />;
+
   return <PhotosPageComponent photos={photos} />;
 };
 

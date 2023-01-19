@@ -4,7 +4,7 @@ import { IUserPageProps } from "../../../pageInterfaces/UserPageProps";
 
 const UserInfo: FC<IUserPageProps> = ({ user }) => {
   return (
-    <div className="grid grid-cols-3 justify-between">
+    <div className="grid justify-between mb-2 md:grid-cols-3">
       <div>
         <p className="text-lg font-semibold ml-2">
           Email:{" "}

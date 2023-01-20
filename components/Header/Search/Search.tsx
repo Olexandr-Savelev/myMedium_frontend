@@ -2,6 +2,7 @@ import Link from "next/link";
 import { FC, useEffect, useState } from "react";
 import { IPostItem } from "../../../pageInterfaces/IndexPageProps";
 import { debounce } from "lodash";
+import SearchList from "./SearchList/SearchList";
 
 const Search: FC = () => {
   const [query, setQuery] = useState<string>("");
@@ -58,38 +59,7 @@ const Search: FC = () => {
           placeholder="Search Post"
         />
       </div>
-      {list && (
-        <ul
-          className="py-1 text-sm max-h-[500px] overflow-auto text-gray-700 dark:text-gray-200 absolute bg-white top-11 left-0 rounded-md w-full"
-          aria-labelledby="dropdown-button-2"
-        >
-          {foundPosts.length ? (
-            <>
-              {foundPosts.map((post) => (
-                <li key={post.id}>
-                  <div
-                    onMouseDown={(event) => event.preventDefault()}
-                    className="inline-flex w-full px-4 py-2 text-sm box-border border-y border-white text-gray-700 transition-all hover:border-y hover:border-slate-300 hover:bg-gray-100"
-                  >
-                    <Link href={`/post/${post.id}`}>
-                      <a className="inline-flex items-center w-full cursor-pointer">
-                        {post.title}
-                      </a>
-                    </Link>
-                  </div>
-                </li>
-              ))}
-            </>
-          ) : (
-            <div
-              className="inline-flex w-full px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
-              role="menuitem"
-            >
-              No posts Found
-            </div>
-          )}
-        </ul>
-      )}
+      {list && <SearchList posts={foundPosts} />}
     </div>
   );
 };

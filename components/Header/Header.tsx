@@ -10,6 +10,7 @@ import Burger from "./Burger/Burger";
 import LogoImg from "./Logo/LogoImg";
 import Menu from "./Menu/Menu";
 import { UIContext } from "../../context/uiContext";
+import Search from "./Search/Search";
 
 export default function Header(): JSX.Element {
   const firebaseUser = useAuth();
@@ -55,6 +56,7 @@ export default function Header(): JSX.Element {
           >
             Follow
           </NavLink>
+          <Search />
         </div>
         <div className="hidden md:flex items-center gap-3">
           {firebaseUser ? (

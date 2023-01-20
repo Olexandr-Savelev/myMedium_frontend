@@ -8,7 +8,7 @@ const PhotosPageComponent: FC<IPhotosPage> = ({ photos }) => {
     return src;
   }
   return (
-    <div className="max-w-5xl mx-auto mt-3 px-2">
+    <div className="max-w-6xl p-2 py-4 mx-auto grid gap-3 md:grid-cols-2">
       {photos.map((photo) => (
         <div
           key={photo.id}

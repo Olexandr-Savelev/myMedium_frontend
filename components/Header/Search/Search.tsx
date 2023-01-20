@@ -54,15 +54,13 @@ const Search: FC = () => {
           }}
           onFocus={() => setList(true)}
           onBlur={() => setList(false)}
-          id="simple-search"
-          className="bg-gray-50 border border-gray-300 text-slate-700 text-sm rounded-xl outline-none focus:border-1 focus:border-slate-700 block w-full pl-10 p-2.5"
-          placeholder="Search"
-          required
+          className="bg-gray-50 border border-gray-300 text-slate-700 text-sm rounded-xl outline-none block w-auto pl-10 p-2.5 transition-all focus:border-1 focus:border-slate-700 focus:w-full"
+          placeholder="Search Post"
         />
       </div>
       {list && (
         <ul
-          className="py-1 text-sm text-gray-700 dark:text-gray-200 absolute bg-white top-11 left-0 rounded-md w-full"
+          className="py-1 text-sm max-h-[500px] overflow-auto text-gray-700 dark:text-gray-200 absolute bg-white top-11 left-0 rounded-md w-full"
           aria-labelledby="dropdown-button-2"
         >
           {foundPosts.length ? (
@@ -71,8 +69,7 @@ const Search: FC = () => {
                 <li key={post.id}>
                   <div
                     onMouseDown={(event) => event.preventDefault()}
-                    className="inline-flex w-full px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
-                    role="menuitem"
+                    className="inline-flex w-full px-4 py-2 text-sm box-border border-y border-white text-gray-700 transition-all hover:border-y hover:border-slate-300 hover:bg-gray-100"
                   >
                     <Link href={`/post/${post.id}`}>
                       <a className="inline-flex items-center w-full cursor-pointer">

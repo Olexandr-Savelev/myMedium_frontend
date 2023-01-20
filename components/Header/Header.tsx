@@ -1,16 +1,17 @@
+import Link from "next/link";
 import { useContext, useState } from "react";
 import { useAuth } from "../../hooks/useAuth";
 
-import { auth } from "../../pages/_app";
-import { signOut } from "firebase/auth";
-
-import Link from "next/link";
 import NavLink from "../NavLink/NavLink";
 import Burger from "./Burger/Burger";
 import LogoImg from "./Logo/LogoImg";
 import Menu from "./Menu/Menu";
-import { UIContext } from "../../context/uiContext";
 import Search from "./Search/Search";
+
+import { auth } from "../../pages/_app";
+import { signOut } from "firebase/auth";
+
+import { UIContext } from "../../context/uiContext";
 
 export default function Header(): JSX.Element {
   const firebaseUser = useAuth();
@@ -39,45 +40,37 @@ export default function Header(): JSX.Element {
       }
     >
       <div className="max-w-7xl flex justify-between items-center mx-auto py-4 px-3">
-        <div className="flex gap-[15px] items-center">
-          <Link href="/">
-            <a>
-              <LogoImg />
-              <span className="text-black text-4xl font-black ml-1">
-                Medium
-              </span>
-            </a>
-          </Link>
+        <Link href="/">
+          <a>
+            <LogoImg />
+            <span className="text-black text-4xl font-black ml-1">Medium</span>
+          </a>
+        </Link>
+        <div className="flex gap-4 items-center">
+          <Search />
           <NavLink href="/about">About</NavLink>
           <NavLink href="/contacts">Contacts</NavLink>
-          <NavLink
-            href="/"
-            style="withBG"
-          >
-            Follow
-          </NavLink>
-          <Search />
-        </div>
-        <div className="hidden md:flex items-center gap-3">
-          {firebaseUser ? (
-            <button
-              className="font-bold hover:underline"
-              type="button"
-              onClick={SignOut}
-            >
-              SignOut
-            </button>
-          ) : (
-            <>
-              <NavLink href="/signin">Sign In</NavLink>
-              <NavLink
-                href="/registration"
-                style="withBorder"
+          <div className="hidden md:flex items-center gap-3">
+            {firebaseUser ? (
+              <button
+                className="font-bold hover:underline"
+                type="button"
+                onClick={SignOut}
               >
-                Get Started
-              </NavLink>
-            </>
-          )}
+                SignOut
+              </button>
+            ) : (
+              <>
+                <NavLink href="/signin">Sign In</NavLink>
+                <NavLink
+                  href="/registration"
+                  style="withBorder"
+                >
+                  Get Started
+                </NavLink>
+              </>
+            )}
+          </div>
         </div>
         <Burger
           menu={menu}

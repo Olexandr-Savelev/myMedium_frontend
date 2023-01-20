@@ -5,7 +5,7 @@ export default function Layout({ children }: React.PropsWithChildren<{}>) {
   return (
     <div className="min-h-screen flex flex-col">
       <Header />
-      <main className="flex-[1_0_auto] relative overflow-hidden">
+      <main className="flex-[1_0_auto] relative">
         <div className="max-w-7xl mx-auto">{children}</div>
       </main>
       <Footer />

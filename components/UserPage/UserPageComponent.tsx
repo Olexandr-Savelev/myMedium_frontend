@@ -43,8 +43,8 @@ const UserPageComponent: FC<IUserPageProps> = ({ user }) => {
   };
 
   return (
-    <div className="max-w-5xl mx-auto">
-      <div className="w-full mx-2 p-3 bg-white border border-gray-200 rounded-lg shadow-md mt-3 sm:p-6">
+    <div className="max-w-5xl mx-auto px-2">
+      <div className="w-full p-3 bg-white border border-gray-200 rounded-lg shadow-md mt-3 sm:p-6">
         <h3 className="text-4xl font-semibold tracking-tight text-gray-900 border-b border-slate-400 pb-3 mb-3 ">
           {user.name}
         </h3>

@@ -19,7 +19,9 @@ const Search: FC = () => {
     const queryString = query.replace(/\s/g, "%20");
     if (query.length !== 0) {
       debounedSearch(queryString);
-    } else setFoundPosts([]);
+    } else {
+      setFoundPosts([]), setList(false);
+    }
   }, [query]);
 
   const search = (queryString: string) => {
@@ -62,7 +64,9 @@ const Search: FC = () => {
           onChange={(e) => {
             setQuery(e.target.value);
           }}
-          onFocus={() => setList(true)}
+          onFocus={() => {
+            query ? setList(true) : setList(false);
+          }}
           onBlur={() => setList(false)}
           className="bg-gray-50 border border-gray-300 text-slate-700 text-sm rounded-xl outline-none block  pl-10 p-2.5 transition-all focus:border-1 focus:border-slate-700 w-28 focus:w-56"
           id="simple-search"

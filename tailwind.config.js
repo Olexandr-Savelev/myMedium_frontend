@@ -1,3 +1,5 @@
+const defaultTheme = require('tailwindcss/defaultTheme')
+
 module.exports = {
   content: [
     "./pages/**/*.{js,ts,jsx,tsx}",
@@ -6,6 +8,10 @@ module.exports = {
 
   theme: {
     extend: {
+      screens: {
+        'xs': { 'min': '475px', 'max': '639px' },
+        ...defaultTheme.screens,
+      },
       colors: {
         "HF-color": " #1e293b",
         "bg-color": "#cbd5e1",

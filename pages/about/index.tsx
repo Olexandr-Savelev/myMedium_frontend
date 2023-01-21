@@ -1,33 +1,59 @@
 import React from "react";
 import styles from "./AboutPage.module.scss";
 import { motion } from "framer-motion";
+import Image from "next/image";
+import Link from "next/link";
 
 const About = () => {
   return (
-    <div className="overflow-hidden">
-      <motion.div
-        animate={{ opacity: [0, 1] }}
-        className={styles.wrapper}
-      >
-        <h2 className={styles.heading}>About Us</h2>
-        <p className={styles.text}>
-          Lorem ipsum dolor, sit amet consectetur adipisicing elit. Commodi
-          autem vero magni harum obcaecati in amet eos vitae, temporibus unde
-          iste. Libero nihil dignissimos, iste nisi, delectus omnis illum beatae
-          repellendus aspernatur quibusdam ex non dolor necessitatibus et
-          debitis excepturi aliquid possimus commodi sequi aut quis laborum
-          deleniti. Quisquam itaque dolorem quibusdam libero minima labore dolor
-          nihil nam at natus corporis dolorum, quos veritatis, excepturi earum
-          harum! Nostrum nemo labore amet deleniti hic quos ullam est placeat
-          eaque odit. Cum, adipisci. Aspernatur tempora perferendis laboriosam
-          temporibus magni officia similique aliquam architecto provident
-          explicabo consequatur, est non quae eligendi debitis ea sint nemo odit
-          dicta. Vel quasi ab assumenda quidem facere delectus officia iste rem
-          magnam porro quam, impedit qui laboriosam mollitia recusandae soluta,
-          ipsam nam possimus debitis cum alias maxime nisi. Eligendi eos nisi
-          soluta ducimus aut pariatur sequi, id dolorum blanditiis sit, beatae
-          vitae labore, doloribus voluptatem ipsum non.
-        </p>
+    <div className="overflow-hidden p-4">
+      <motion.div animate={{ opacity: [0, 1] }}>
+        <h2 className="text-3xl text-slate-700 text-center py-3">About Me</h2>
+        <div className="max-w-5xl px-6 py-4 m-auto bg-white border border-gray-200 rounded-lg shadow-md">
+          <div className="relative w-40 h-40 float-left mr-10 mb-2 rounded-full shadow-lg">
+            <Image
+              className="object-cover mb-3 rounded-full"
+              src="/me.jpg"
+              layout="fill"
+              alt="me"
+            />
+          </div>
+          <div className="flex-1">
+            <p className="text-xl text-slate-600 font-medium mb-3">
+              Hi! My name is Olexander I was born in Kramatorsk Donetsk region
+              at 1991. Now I&apos;m 31 y.o and I live in Odesa. More than year
+              ago I decide to start learn front end development. During this
+              time I acquired skills in technologies such as HTML, CSS,
+              Javascript, React, Angular and other. I have several projects of
+              varying complexity using these technologies on my{" "}
+              {
+                <Link
+                  href="https://github.com/Olexandr-Savelev"
+                  passHref
+                >
+                  <a
+                    className="ml-2 inline-flex items-center text-blue-600 hover:underline"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    Github
+                    <svg
+                      className="w-5 h-5 ml-2"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path d="M11 3a1 1 0 100 2h2.586l-6.293 6.293a1 1 0 101.414 1.414L15 6.414V9a1 1 0 102 0V4a1 1 0 00-1-1h-5z"></path>
+                      <path d="M5 5a2 2 0 00-2 2v8a2 2 0 002 2h8a2 2 0 002-2v-3a1 1 0 10-2 0v3H5V7h3a1 1 0 000-2H5z"></path>
+                    </svg>
+                  </a>
+                </Link>
+              }
+              . Now continue to improve my skills in this area and searching my
+              first job as a front end developer.
+            </p>
+          </div>
+        </div>
       </motion.div>
     </div>
   );

@@ -9,12 +9,18 @@ import Spinner from "../../../components/Spinner/Spinner";
 import { getPosts, getSinglePost } from "../../../services/posts-service";
 import { IPostItem } from "../../../pageInterfaces/IndexPageProps";
 import { IPostPageProps } from "../../../pageInterfaces/PostPageProps";
+import { getSingleUser } from "../../../services/users-service";
 
-const PostPage: NextPage<IPostPageProps> = ({ postItem }) => {
+const PostPage: NextPage<IPostPageProps> = ({ postItem, user }) => {
   const router = useRouter();
 
   if (router.isFallback) return <Spinner />;
-  return <PostPageComponent postItem={postItem} />;
+  return (
+    <PostPageComponent
+      postItem={postItem}
+      user={user}
+    />
+  );
 };
 
 export const getStaticPaths: GetStaticPaths = async () => {
@@ -38,9 +44,12 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
 
   const postItem = await getSinglePost(postSlug);
 
+  const user = await getSingleUser(postItem?.userId + "");
+
   return {
     props: {
       postItem,
+      user,
     },
   };
 };

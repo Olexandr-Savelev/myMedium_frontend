@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
-import ContactList from "./ContactLIst/ContactList";
+import ContactList from "./ContactList/ContactList";
 
 const AboutPageComponent = () => {
   return (

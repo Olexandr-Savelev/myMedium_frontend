@@ -9,7 +9,7 @@ import CommentModal from "./CommentModal/CommentModal";
 import { IComment, IPostPageProps } from "../../pageInterfaces/PostPageProps";
 import Spinner from "../Spinner/Spinner";
 
-const PostPageComponent: FC<IPostPageProps> = ({ postItem }) => {
+const PostPageComponent: FC<IPostPageProps> = ({ postItem, user }) => {
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const [loading, setLoading] = useState<boolean>(false);
   const [comments, setCommets] = useState<IComment[]>([]);
@@ -39,9 +39,21 @@ const PostPageComponent: FC<IPostPageProps> = ({ postItem }) => {
         <p className="text-slate-700 text-md leading-relaxed">
           {postItem.body}
         </p>
-        <div>
+        <div className="flex justify-between items-center mt-3">
+          <p>
+            Author:{" "}
+            <Link
+              href={`/users/${user.id}`}
+              passHref
+            >
+              <a className="font-bold text-xl text-slate-800 hover:text-slate-500">
+                {user.name}
+              </a>
+            </Link>
+          </p>
+
           <button
-            className="mt-4 text-white bg-blue-700 hover:bg-blue-800 font-semibold rounded-lg text-sm px-5 py-2.5 text-center uppercase"
+            className="text-white bg-blue-700 hover:bg-blue-800 font-semibold rounded-lg text-sm px-5 py-2.5 text-center uppercase"
             onClick={() => {
               setIsModalOpen(true);
             }}

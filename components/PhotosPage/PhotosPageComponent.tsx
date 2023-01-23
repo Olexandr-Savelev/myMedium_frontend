@@ -25,7 +25,7 @@ const PhotosPageComponent: FC<IPhotosPage> = ({ photos }) => {
           <div
             key={photo.id}
             onClick={() => setCurrentPhoto(photo)}
-            className="flex flex-col items-center bg-white border rounded-lg shadow-md w-full mb-3 cursor-pointer hover:shadow-lg"
+            className="flex flex-col items-center bg-white border rounded-lg shadow-lg w-full mb-3 cursor-pointer hover:shadow-none"
           >
             <Image
               className="object-cover w-full rounded-lg h-96 md:h-auto"

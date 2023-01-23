@@ -41,7 +41,7 @@ const PostPageComponent: FC<IPostPageProps> = ({ postItem }) => {
         </p>
         <div>
           <button
-            className="bg-slate-500 text-white active:bg-slate-500 hover:bg-slate-700 font-bold uppercase text-sm px-4 py-2 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150 mt-3 cursor-pointer disabled:opacity-75 disabled:hover:bg-slate-500 disabled:cursor-auto"
+            className="mt-4 text-white bg-blue-700 hover:bg-blue-800 font-semibold rounded-lg text-sm px-5 py-2.5 text-center uppercase"
             onClick={() => {
               setIsModalOpen(true);
             }}

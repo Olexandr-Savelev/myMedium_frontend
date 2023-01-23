@@ -3,7 +3,7 @@ import { FC, useState } from "react";
 import InfiniteScroll from "react-infinite-scroll-component";
 
 import { PostListProps } from "../../pageInterfaces/IndexPageProps";
-import PostItem from "../PostItem/PostItem";
+import PostItem from "./PostItem/PostItem";
 import Spinner from "../Spinner/Spinner";
 
 const PostList: FC<PostListProps> = ({ postList }) => {

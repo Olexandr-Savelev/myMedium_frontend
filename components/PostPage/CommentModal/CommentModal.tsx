@@ -70,7 +70,7 @@ const CommentModal: FC<IModal> = ({ post, setIsModalOpen, addNewComment }) => {
             </div>
             <div className="flex items-center justify-end p-6 border-t border-solid border-slate-200 rounded-b">
               <button
-                className="bg-slate-500 text-white active:bg-slate-500 hover:bg-slate-700 font-bold uppercase text-sm px-4 py-2 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+                className="text-white bg-blue-700 hover:bg-blue-800 font-semibold rounded-lg text-sm px-5 py-2.5 text-center uppercase"
                 type="button"
                 onClick={(e) => onCommentAdd()}
               >

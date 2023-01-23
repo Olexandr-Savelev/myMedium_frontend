@@ -13,7 +13,7 @@ const PhotosPageComponent: FC<IPhotosPage> = ({ photos }) => {
   }
 
   return (
-    <div className="max-w-6xl p-2 py-4 mx-auto grid grid-cols-1 gap-3 xs:grid-cols-2 sm:grid-cols-3">
+    <div className="max-w-6xl p-2 py-4 mx-auto grid grid-cols-1 gap-3 xs:grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
       {currentPhoto && (
         <PhotoModal
           photo={currentPhoto}
@@ -36,7 +36,7 @@ const PhotosPageComponent: FC<IPhotosPage> = ({ photos }) => {
               loader={loaderProp}
               loading="lazy"
             />
-            <h5 className="mb-2 p-3 text-lg font-bold tracking-tight text-gray-900 md:text-2xl">
+            <h5 className="mb-2 p-3 text-lg font-semibold tracking-tight text-gray-900 md:text-2xl">
               {photo.title}
             </h5>
           </div>

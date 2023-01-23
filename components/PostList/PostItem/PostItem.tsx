@@ -4,7 +4,7 @@ import Link from "next/link";
 import { motion, useAnimation } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 
-import { IPostItem } from "../../pageInterfaces/IndexPageProps";
+import { IPostItem } from "../../../pageInterfaces/IndexPageProps";
 
 interface TopPostItemProps extends IPostItem {
   place?: number;
@@ -41,7 +41,7 @@ const PostItem: FC<TopPostItemProps> = ({ place, ...postItem }) => {
       </div>
       <div className="flex justify-end mt-2">
         <Link href={`/post/${postItem.id}`}>
-          <a className="inline-block px-6 py-2.5 bg-slate-500 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-slate-700 hover:shadow-lg focus:bg-slate-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-slate-800 active:shadow-lg transition duration-150 ease-in-out">
+          <a className="mt-2 text-white bg-blue-700 hover:bg-blue-800 font-semibold rounded-lg text-sm px-5 py-2.5 text-center uppercase">
             Details
           </a>
         </Link>

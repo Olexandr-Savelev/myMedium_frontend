@@ -23,7 +23,7 @@ const SearchList: FC<ISearchListProps> = ({ posts, onPostClick }) => {
               onClick={() => onPostClick()}
             >
               <Link href={`/post/${post.id}`}>
-                <a className="inline-flex items-center w-full cursor-pointer px-4 py-2 text-sm box-border border-y border-white text-gray-700 transition-all hover:border-y hover:border-slate-300 hover:bg-gray-100">
+                <a className="inline-flex items-center w-full cursor-pointer px-4 py-2 text-sm box-border border-y border-white text-gray-700 transition-all hover:border-y hover:border-blue-300 hover:bg-gray-100">
                   {post.title}
                 </a>
               </Link>

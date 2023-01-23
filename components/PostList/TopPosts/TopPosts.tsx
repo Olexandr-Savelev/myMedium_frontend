@@ -1,6 +1,6 @@
 import React, { FC } from "react";
 import { IPostItem } from "../../../pageInterfaces/IndexPageProps";
-import PostItem from "../../PostItem/PostItem";
+import PostItem from "../PostItem/PostItem";
 
 interface ITopPostsProps {
   posts: IPostItem[];

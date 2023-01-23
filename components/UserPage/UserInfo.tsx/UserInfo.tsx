@@ -21,7 +21,7 @@ const UserInfo: FC<IUserPageProps> = ({ user }) => {
         <p className="text-lg font-semibold ml-2">
           Site:{" "}
           <Link
-            href={user.website}
+            href={`https://abtei-st-hildegard.de/hildegard-von-bingen/`}
             passHref
           >
             <a

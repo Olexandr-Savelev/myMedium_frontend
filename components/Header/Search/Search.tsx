@@ -9,7 +9,7 @@ import { IPostItem } from "../../../pageInterfaces/IndexPageProps";
 const Search: FC = () => {
   const [query, setQuery] = useState<string>("");
   const [list, setList] = useState<boolean>(false);
-  const [foundPosts, setFoundPosts] = useState<IPostItem[]>([]);
+  const [foundedPosts, setFoundedPosts] = useState<IPostItem[]>([]);
 
   const onPostClick = () => {
     setList(false);
@@ -20,7 +20,7 @@ const Search: FC = () => {
     if (query.length !== 0) {
       debounedSearch(queryString);
     } else {
-      setFoundPosts([]), setList(false);
+      setFoundedPosts([]), setList(false);
     }
   }, [query]);
 
@@ -30,7 +30,7 @@ const Search: FC = () => {
     }
     fetch(
       `https://jsonplaceholder.typicode.com/posts?title_like=${queryString}`
-    ).then((res) => res.json().then((posts) => setFoundPosts(posts)));
+    ).then((res) => res.json().then((posts) => setFoundedPosts(posts)));
   };
 
   const debounedSearch = debounce(search, 500);
@@ -75,7 +75,7 @@ const Search: FC = () => {
       </div>
       {list && (
         <SearchList
-          posts={foundPosts}
+          posts={foundedPosts}
           onPostClick={onPostClick}
         />
       )}

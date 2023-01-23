@@ -14,8 +14,14 @@ const ContactItem: FC<IContactItemProps> = ({
   socialNetworkName,
 }) => {
   return (
-    <Link href={contactUrl}>
-      <a className="rounded-lg shadow-md flex flex-col justify-center px-3 py-2 hover:shadow-none w-28">
+    <Link
+      href={contactUrl}
+      passHref
+    >
+      <a
+        className="rounded-lg shadow-md flex flex-col justify-center px-3 py-2 hover:shadow-none w-28"
+        target="_blank"
+      >
         <Image
           src={imagePath}
           alt={socialNetworkName}

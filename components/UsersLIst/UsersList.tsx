@@ -8,8 +8,8 @@ import { IUser } from "../../pageInterfaces/UserPageProps";
 const UsersList: FC<TopUsersListProps> = ({ usersList }) => {
   return (
     <>
-      <h3 className="text-gray-600 text-2xl font-semibold">Users:</h3>
-      <ul className="flex flex-wrap gap-2">
+      <h3 className="text-gray-600 text-2xl font-semibold mb-2">Users:</h3>
+      <ul className="flex flex-col gap-2 sm:flex-row flex-wrap">
         {usersList.map((user: IUser) => (
           <li key={user.id}>
             <UserItem {...user} />

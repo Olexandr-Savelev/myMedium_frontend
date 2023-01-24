@@ -27,7 +27,7 @@ const PostItem: FC<TopPostItemProps> = ({ place, ...postItem }) => {
 
   return (
     <motion.div
-      className="w-full flex flex-col justify-between py-4 px-8 bg-white shadow-lg rounded-lg my-4"
+      className="w-full flex flex-col justify-between py-2 px-2 bg-white shadow-lg rounded-lg my-4 md:py-4 md:px-8"
       ref={ref}
       animate={controls}
       initial={place ? "visible" : "hidden"}
@@ -41,7 +41,7 @@ const PostItem: FC<TopPostItemProps> = ({ place, ...postItem }) => {
       </div>
       <div className="flex justify-end mt-2">
         <Link href={`/post/${postItem.id}`}>
-          <a className="mt-2 text-white bg-blue-700 hover:bg-blue-800 font-semibold rounded-lg text-sm px-5 py-2.5 text-center uppercase">
+          <a className="mt-2 text-white bg-blue-700 hover:bg-blue-800 font-semibold rounded-lg text-sm px-5 py-2.5 text-center uppercase block w-full">
             Details
           </a>
         </Link>

@@ -22,7 +22,7 @@ const AlbumItem: FC<IAlbumItem> = ({ ...albumItem }) => {
 
   return (
     <motion.div
-      className="w-full flex flex-col justify-between py-4 px-8 bg-white shadow-lg rounded-lg my-4"
+      className="w-full flex flex-col justify-between p-3 bg-white shadow-lg rounded-lg my-4 sm:py-4 sm:px-8"
       ref={ref}
       animate={controls}
       initial={"hidden"}
@@ -33,7 +33,7 @@ const AlbumItem: FC<IAlbumItem> = ({ ...albumItem }) => {
           {albumItem.title}
         </h2>
         <Link href={`/photos?albumId=${albumItem.id}`}>
-          <a className="text-white bg-blue-700 hover:bg-blue-800 font-semibold rounded-lg text-sm px-5 py-2.5 text-center uppercase h-fit w-full sm:w-auto">
+          <a className="text-white bg-blue-700 hover:bg-blue-800 font-semibold rounded-lg text-sm px-5 py-2.5 text-center uppercase h-fit block w-full sm:w-auto">
             Photos
           </a>
         </Link>

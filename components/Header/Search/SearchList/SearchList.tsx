@@ -11,7 +11,7 @@ interface ISearchListProps {
 const SearchList: FC<ISearchListProps> = ({ posts, onPostClick }) => {
   return (
     <ul
-      className="absolute top-12 left-0 py-1 text-sm max-h-96 overflow-auto text-gray-700 dark:text-gray-200 bg-white rounded-md w-full scrollbar-thumb-slate-600 scrollbar-track-gray-100 scrollbar-thin shadow-md"
+      className="absolute w-[calc(100vw-150px)] top-12 right-0 py-1 text-sm max-h-96 overflow-auto text-gray-700 dark:text-gray-200 bg-white rounded-md scrollbar-thumb-slate-600 scrollbar-track-gray-100 scrollbar-thin shadow-md sm:w-full sm:left-0"
       aria-labelledby="dropdown-button-2"
     >
       {posts.length ? (

@@ -32,28 +32,28 @@ const PostPageComponent: FC<IPostPageProps> = ({ postItem, user }) => {
 
   return (
     <div className="px-2">
-      <div className="flex flex-col p-8 w-full border-[1px] border-slate-400 my-4 shadow-md">
+      <div className="flex flex-col p-3 w-full border-[1px] border-slate-400 my-4 shadow-md sm:p-8">
         <h3 className="text-center text-xl font-bold uppercase">
           {postItem.title}
         </h3>
         <p className="text-slate-700 text-md leading-relaxed">
           {postItem.body}
         </p>
-        <div className="flex justify-between items-center mt-3">
-          <p>
+        <div className="flex flex-col gap-4 items-center mt-3 sm:flex-row sm:justify-between">
+          <p className="font-bold text-lg text-slate-600">
             Author:{" "}
             <Link
               href={`/users/${user.id}`}
               passHref
             >
-              <a className="font-bold text-xl text-slate-800 hover:text-slate-500">
+              <a className="font-bold text-2xl text-slate-800 hover:text-slate-500 hover:underline">
                 {user.name}
               </a>
             </Link>
           </p>
 
           <button
-            className="text-white bg-blue-700 hover:bg-blue-800 font-semibold rounded-lg text-sm px-5 py-2.5 text-center uppercase"
+            className="text-white bg-blue-700 hover:bg-blue-800 font-semibold rounded-lg text-sm px-5 py-2.5 text-center uppercase cursor-pointer block w-full sm:w-auto"
             onClick={() => {
               setIsModalOpen(true);
             }}
@@ -94,11 +94,15 @@ const PostPageComponent: FC<IPostPageProps> = ({ postItem, user }) => {
         <span className="text-gray-600 text-2xl font-semibold">
           To see and leave comments please{" "}
           <Link href={"/registration"}>
-            <a className="text-blue-700 font-light hover:underline">register</a>
+            <a className="text-blue-700 font-bold uppercase hover:text-blue-500 hover:underline">
+              register
+            </a>
           </Link>{" "}
           or{" "}
           <Link href={"/signin"}>
-            <a className="text-blue-700 font-light hover:underline">log in</a>
+            <a className="text-blue-700 font-bold uppercase hover:text-blue-500 hover:underline">
+              Sign in
+            </a>
           </Link>
         </span>
       )}

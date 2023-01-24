@@ -17,11 +17,11 @@ const Home: NextPage<IndexPageProps> = ({ postList, usersList }) => {
       <Hero />
       <Slider />
       <TopPosts posts={postList.slice(0, 6)} />
-      <div className="flex gap-4 px-2">
-        <div className="flex-auto w-[65%]">
+      <div className="flex flex-col-reverse gap-4 px-2 sm:flex-row">
+        <div className="flex-auto w-full sm:w-[65%]">
           <PostList postList={postList} />
         </div>
-        <div className="flex-auto w-[35%] max-h-[100vh] overflow-y-auto px-4 pb-4 border-slate-400 position: sticky top-[78px]">
+        <div className="flex-auto flex-rev w-full max-h-[100vh] px-4 pb-4 border-slate-400 sm:sticky sm:top-[78px] sm:w-[35%] sm:overflow-y-auto">
           <UsersList usersList={usersList} />
         </div>
       </div>

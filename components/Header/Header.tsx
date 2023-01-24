@@ -40,16 +40,20 @@ export default function Header(): JSX.Element {
       }
     >
       <div className="max-w-7xl flex justify-between items-center mx-auto py-4 px-3">
-        <Link href="/">
-          <a>
+        <Link
+          href="/"
+          passHref
+        >
+          <a className="flex items-center">
             <LogoImg />
-            <span className="text-black text-4xl font-black ml-1">Medium</span>
+            <span className="hidden text-black text-4xl font-black ml-1 xs:block sm:block">
+              Medium
+            </span>
           </a>
         </Link>
-        <div className="flex gap-4 items-center">
+        <div className="hidden gap-4 items-center md:flex">
           <Search />
           <NavLink href="/about">About</NavLink>
-          <NavLink href="/contacts">Contacts</NavLink>
           <div className="hidden md:flex items-center gap-3">
             {firebaseUser ? (
               <button
@@ -72,11 +76,14 @@ export default function Header(): JSX.Element {
             )}
           </div>
         </div>
-        <Burger
-          menu={menu}
-          setMenu={toggleMenu}
-        />
-        <Menu menu={menu} />
+        <div className="flex items-center gap-2 md:hidden">
+          <Search />
+          <Burger
+            menu={menu}
+            setMenu={toggleMenu}
+          />
+          <Menu menu={menu} />
+        </div>
       </div>
     </header>
   );

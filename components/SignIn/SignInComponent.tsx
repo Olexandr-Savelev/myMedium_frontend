@@ -25,7 +25,6 @@ const SignInComponent = () => {
 
   const cleanError = () => {
     setError(undefined);
-    console.log("CALLBACK");
   };
 
   const onSignIn = (data: FormValues) => {
@@ -35,7 +34,6 @@ const SignInComponent = () => {
       .then((userCredential) => {
         // Signed in
         const user = userCredential.user;
-        console.log(user);
         router.push("/");
       })
       .catch((error: Error) => {

@@ -9,7 +9,7 @@ import { IPostItem } from "../../../pageInterfaces/IndexPageProps";
 const Search: FC = () => {
   const [query, setQuery] = useState<string>("");
   const [list, setList] = useState<boolean>(false);
-  const [foundedPosts, setFoundedPosts] = useState<IPostItem[]>([]);
+  const [foundPosts, setFoundPosts] = useState<IPostItem[]>([]);
 
   const onPostClick = () => {
     setList(false);
@@ -20,7 +20,7 @@ const Search: FC = () => {
     if (query.length !== 0) {
       debounedSearch(queryString);
     } else {
-      setFoundedPosts([]), setList(false);
+      setFoundPosts([]), setList(false);
     }
   }, [query]);
 
@@ -30,7 +30,7 @@ const Search: FC = () => {
     }
     fetch(
       `https://jsonplaceholder.typicode.com/posts?title_like=${queryString}`
-    ).then((res) => res.json().then((posts) => setFoundedPosts(posts)));
+    ).then((res) => res.json().then((posts) => setFoundPosts(posts)));
   };
 
   const debounedSearch = debounce(search, 500);
@@ -68,14 +68,14 @@ const Search: FC = () => {
             query ? setList(true) : setList(false);
           }}
           onBlur={() => setList(false)}
-          className="bg-gray-50 border-2 border-blue-200 text-slate-700 text-sm rounded-xl outline-none block pl-10 p-2.5 transition-all focus:border-blue-700 w-28 focus:w-56"
+          className="w-0 bg-gray-50 border-2 border-blue-200 text-slate-700 text-sm rounded-xl outline-none block pl-10 p-2.5 transition-all focus:border-blue-700 focus:w-32 sm:w-28 xs:focus:w-56 sm:focus:w-56"
           id="simple-search"
           placeholder="Search"
         />
       </div>
       {list && (
         <SearchList
-          posts={foundedPosts}
+          posts={foundPosts}
           onPostClick={onPostClick}
         />
       )}

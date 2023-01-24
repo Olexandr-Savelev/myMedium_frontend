@@ -30,7 +30,7 @@ export default function Hero() {
           variants={variants}
         >
           <p className="text-3xl font-normal md:text-4xl md:font-medium mb-3 lg:text-5xl">
-            <strong className="text-4xl underline md:text-6xl">Medium</strong>{" "}
+            <strong className="text-5xl underline md:text-6xl">Medium</strong>{" "}
             is a place to write, read, and connect.
           </p>
           <p className="text-xl font-normal md:text-2xl md:font-medium">

@@ -12,7 +12,6 @@ export default function LogoImg(props: Props): JSX.Element {
         src={logo}
         width={50}
         height={28}
-        // layout="fill"
         alt="Medium_logo"
         {...props}
       />

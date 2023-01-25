@@ -3,7 +3,8 @@ import cn from "classnames";
 import styles from "./NaLink.module.scss";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { FC } from "react";
+import { FC, useContext } from "react";
+import { UIContext } from "../../context/uiContext";
 
 const NavLink: FC<NavLinkProps> = ({
   children,
@@ -11,6 +12,7 @@ const NavLink: FC<NavLinkProps> = ({
   style,
   inMenu = false,
 }) => {
+  const { toggleMenu } = useContext(UIContext);
   const { pathname } = useRouter();
 
   return (
@@ -19,6 +21,7 @@ const NavLink: FC<NavLinkProps> = ({
       passHref
     >
       <a
+        onClick={() => toggleMenu()}
         style={
           pathname == href
             ? { color: "#9c9c9c", textDecoration: "underline" }

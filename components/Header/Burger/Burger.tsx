@@ -1,18 +1,21 @@
-import styles from './Burger.module.scss'
-import cn from 'classnames'
+import { FC, useContext } from "react";
+import { UIContext } from "../../../context/uiContext";
 
-interface BurgerProps {
-  menu: boolean;
-  setMenu: () => void
-}
+import styles from "./Burger.module.scss";
+import cn from "classnames";
 
-export default function Burger({ menu, setMenu }: BurgerProps): JSX.Element {
+const Burger: FC = () => {
+  const { menu, toggleMenu } = useContext(UIContext);
   return (
-    <div className={cn(styles.burger, {
-      [styles.active]: menu
-    })}
-      onClick={() => setMenu()}>
+    <div
+      className={cn(styles.burger, {
+        [styles.active]: menu,
+      })}
+      onClick={() => toggleMenu()}
+    >
       <span className={styles.line}></span>
     </div>
-  )
-}
+  );
+};
+
+export default Burger;

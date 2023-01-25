@@ -18,10 +18,21 @@ type ContextProps = {
 interface IUIContext {
   isHeaderSticky: boolean;
   setIsHeaderSticky: Dispatch<SetStateAction<boolean>>;
+  menu: boolean;
+  toggleMenu: () => void;
 }
 
 const UIPovider: FC<ContextProps> = ({ children }) => {
   const [isHeaderSticky, setIsHeaderSticky] = useState(false);
+
+  const [menu, setMenu] = useState(false);
+
+  const toggleMenu = () => {
+    if (!menu) {
+      setMenu(true);
+    } else setMenu(false);
+  };
+
   const router = useRouter();
 
   useEffect(() => {
@@ -31,6 +42,8 @@ const UIPovider: FC<ContextProps> = ({ children }) => {
   }, [router.asPath]);
 
   const value = {
+    menu,
+    toggleMenu,
     isHeaderSticky,
     setIsHeaderSticky,
   };

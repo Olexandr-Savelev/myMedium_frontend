@@ -1,8 +1,9 @@
 import { FC, useEffect } from "react";
+import Link from "next/link";
 
 import { useAnimation, motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
-import Link from "next/link";
+
 import { IAlbumItem } from "../../pageInterfaces/AlbumPageProps";
 
 const AlbumItem: FC<IAlbumItem> = ({ ...albumItem }) => {

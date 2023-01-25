@@ -1,15 +1,18 @@
-import NavLink from "../../NavLink/NavLink";
-import cn from "classnames";
-import styles from "./Menu.module.scss";
-import { useAuth } from "../../../hooks/useAuth";
+import { FC, useContext } from "react";
 import { signOut } from "firebase/auth";
+
+import { useAuth } from "../../../hooks/useAuth";
 import { auth } from "../../../pages/_app";
 
-interface MenuProps {
-  menu: boolean;
-}
+import NavLink from "../../NavLink/NavLink";
+import { UIContext } from "../../../context/uiContext";
 
-export default function Menu({ menu }: MenuProps): JSX.Element {
+import cn from "classnames";
+import styles from "./Menu.module.scss";
+
+const Menu: FC = () => {
+  const { menu, toggleMenu } = useContext(UIContext);
+
   const firebaseUser = useAuth();
   const responsiveStyles = "min-w-[80vw] sm:min-w-[80vw]";
 
@@ -19,10 +22,20 @@ export default function Menu({ menu }: MenuProps): JSX.Element {
         [styles.active]: menu,
       })}
     >
+      <li>
+        <NavLink
+          href="/about"
+          inMenu={true}
+        >
+          About
+        </NavLink>
+      </li>
       {firebaseUser ? (
         <button
-          className="font-medium text-2xl"
-          onClick={() => signOut(auth)}
+          className="font-medium text-2xl text-red-500 hover:underline"
+          onClick={() => {
+            signOut(auth), toggleMenu();
+          }}
         >
           Sign Out
         </button>
@@ -47,15 +60,8 @@ export default function Menu({ menu }: MenuProps): JSX.Element {
           </li>
         </>
       )}
-
-      <li>
-        <NavLink
-          href="/about"
-          inMenu={true}
-        >
-          About
-        </NavLink>
-      </li>
     </ul>
   );
-}
+};
+
+export default Menu;

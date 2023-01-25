@@ -1,34 +1,15 @@
-import Link from "next/link";
-import { useContext, useState } from "react";
-import { useAuth } from "../../hooks/useAuth";
+import { useContext } from "react";
 
-import NavLink from "../NavLink/NavLink";
 import Burger from "./Burger/Burger";
-import LogoImg from "./Logo/LogoImg";
-import Menu from "./Menu/Menu";
 import Search from "./Search/Search";
-
-import { auth } from "../../pages/_app";
-import { signOut } from "firebase/auth";
+import Menu from "./Menu/Menu";
 
 import { UIContext } from "../../context/uiContext";
+import Nav from "./Nav/Nav";
+import Logo from "./Logo/Logo";
 
 export default function Header(): JSX.Element {
-  const firebaseUser = useAuth();
-
   const { isHeaderSticky } = useContext(UIContext);
-
-  const SignOut = () => {
-    signOut(auth);
-  };
-
-  const [menu, setMenu] = useState(false);
-
-  const toggleMenu = () => {
-    if (!menu) {
-      setMenu(true);
-    } else setMenu(false);
-  };
 
   return (
     <header
@@ -40,49 +21,14 @@ export default function Header(): JSX.Element {
       }
     >
       <div className="max-w-7xl flex justify-between items-center mx-auto py-4 px-3">
-        <Link
-          href="/"
-          passHref
-        >
-          <a className="flex items-center">
-            <LogoImg />
-            <span className="hidden text-black text-4xl font-black ml-1 xs:block sm:block">
-              Medium
-            </span>
-          </a>
-        </Link>
+        <Logo />
         <div className="hidden gap-4 items-center md:flex">
-          <Search />
-          <NavLink href="/about">About</NavLink>
-          <div className="hidden md:flex items-center gap-3">
-            {firebaseUser ? (
-              <button
-                className="font-bold hover:underline"
-                type="button"
-                onClick={SignOut}
-              >
-                SignOut
-              </button>
-            ) : (
-              <>
-                <NavLink href="/signin">Sign In</NavLink>
-                <NavLink
-                  href="/registration"
-                  style="withBorder"
-                >
-                  Get Started
-                </NavLink>
-              </>
-            )}
-          </div>
+          <Nav />
         </div>
         <div className="flex items-center gap-2 md:hidden">
           <Search />
-          <Burger
-            menu={menu}
-            setMenu={toggleMenu}
-          />
-          <Menu menu={menu} />
+          <Burger />
+          <Menu />
         </div>
       </div>
     </header>

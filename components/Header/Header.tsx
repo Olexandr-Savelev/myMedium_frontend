@@ -1,14 +1,12 @@
-import { useContext } from "react";
+import { FC, useContext } from "react";
 
-import Burger from "./Burger/Burger";
-import Search from "./Search/Search";
-import Menu from "./Menu/Menu";
-
-import { UIContext } from "../../context/uiContext";
 import Nav from "./Nav/Nav";
 import Logo from "./Logo/Logo";
+import MobileNav from "./Nav/MobileNav";
 
-export default function Header(): JSX.Element {
+import { UIContext } from "../../context/uiContext";
+
+const Header: FC = () => {
   const { isHeaderSticky } = useContext(UIContext);
 
   return (
@@ -26,11 +24,11 @@ export default function Header(): JSX.Element {
           <Nav />
         </div>
         <div className="flex items-center gap-2 md:hidden">
-          <Search />
-          <Burger />
-          <Menu />
+          <MobileNav />
         </div>
       </div>
     </header>
   );
-}
+};
+
+export default Header;

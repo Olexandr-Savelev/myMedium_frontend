@@ -41,7 +41,7 @@ const RegistrationPageComponent = () => {
       animate={{ opacity: [0, 1] }}
       className="w-full flex flex-col items-center absolute top-[50%] translate-y-[-50%]"
     >
-      <div className="w-full max-w-xl">
+      <div className="w-full max-w-2xl">
         <form
           className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4"
           onSubmit={handleSubmit(onFormSubmit)}

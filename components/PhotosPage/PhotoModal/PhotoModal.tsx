@@ -13,7 +13,7 @@ interface IModal {
 }
 
 const PhotoModal: FC<IModal> = ({ photo, setCurrentPhoto }) => {
-  function loaderProp<T extends { src: string }>({ src }: T) {
+  function loaderProp({ src }: { src: string }) {
     return src;
   }
   return (
@@ -38,6 +38,7 @@ const PhotoModal: FC<IModal> = ({ photo, setCurrentPhoto }) => {
                 src={photo.url}
                 alt={photo.title}
                 layout="fill"
+                unoptimized={true}
                 loader={loaderProp}
                 loading="lazy"
               />

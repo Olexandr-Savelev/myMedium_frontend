@@ -20,12 +20,8 @@ const Header: FC = () => {
     >
       <div className="max-w-7xl flex justify-between items-center mx-auto py-4 px-3">
         <Logo />
-        <div className="hidden gap-4 items-center md:flex">
-          <Nav />
-        </div>
-        <div className="flex items-center gap-2 md:hidden">
-          <MobileNav />
-        </div>
+        <Nav />
+        <MobileNav />
       </div>
     </header>
   );

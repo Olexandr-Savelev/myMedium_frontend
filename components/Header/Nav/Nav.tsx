@@ -15,7 +15,7 @@ const Nav: FC = () => {
   };
 
   return (
-    <>
+    <div className="hidden gap-4 items-center md:flex">
       <Search />
       <NavLink href="/about">About</NavLink>
       <div className="hidden md:flex items-center gap-3">
@@ -39,7 +39,7 @@ const Nav: FC = () => {
           </>
         )}
       </div>
-    </>
+    </div>
   );
 };
 

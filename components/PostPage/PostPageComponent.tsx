@@ -1,6 +1,7 @@
 import { FC, useEffect, useState } from "react";
 
 import { useAuth } from "../../hooks/useAuth";
+import { useFetch } from "../../hooks/useFetch";
 
 import CommentModal from "./CommentModal/CommentModal";
 import CommentList from "./CommentList/CommentList";
@@ -10,7 +11,6 @@ import { IComment, IPostPageProps } from "../../pageInterfaces/PostPageProps";
 
 const PostPageComponent: FC<IPostPageProps> = ({ postItem, user }) => {
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
-  const [loading, setLoading] = useState<boolean>(false);
   const [comments, setCommets] = useState<IComment[]>([]);
   const firebaseUser = useAuth();
 
@@ -18,16 +18,14 @@ const PostPageComponent: FC<IPostPageProps> = ({ postItem, user }) => {
     setCommets((comments) => [...comments, comment]);
   };
 
+  const { data, loading, error } = useFetch<IComment[]>(
+    `https://jsonplaceholder.typicode.com/posts/${postItem.id}/comments`
+  );
+
   useEffect(() => {
-    setLoading(true);
-    fetch(`https://jsonplaceholder.typicode.com/posts/${postItem.id}/comments`)
-      .then((res) =>
-        res.json().then((comments) => {
-          setCommets(comments), setLoading(false);
-        })
-      )
-      .catch((err) => console.log(err));
-  }, []);
+    if (!data) return;
+    setCommets(data);
+  }, [loading]);
 
   return (
     <div className="px-2 overflow-hidden">

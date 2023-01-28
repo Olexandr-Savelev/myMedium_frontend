@@ -2,6 +2,8 @@ import { FC, useMemo, useState } from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
 
+import { useFetch } from "../../hooks/useFetch";
+
 import AlbumsItem from "../AlbumItem/AlbumItem";
 import PostItem from "../PostList/PostItem/PostItem";
 import Spinner from "../Spinner/Spinner";
@@ -12,9 +14,7 @@ import { IPostItem } from "../../pageInterfaces/IndexPageProps";
 import { IUserPageProps } from "../../pageInterfaces/UserPageProps";
 
 const UserPageComponent: FC<IUserPageProps> = ({ user }) => {
-  const [userPosts, setUserPosts] = useState<IPostItem[]>([]);
-  const [userAlbums, setUserAlbums] = useState<IAlbumItem[]>([]);
-  const [loading, setLoading] = useState<boolean>(false);
+  const [url, setUrl] = useState<string>("");
 
   const transformUserName = () => {
     let userFirstName = user.name.split(" ")[0];
@@ -32,33 +32,7 @@ const UserPageComponent: FC<IUserPageProps> = ({ user }) => {
 
   const transformedUserName = useMemo(() => transformUserName(), [user]);
 
-  const userPostsHandler = () => {
-    setUserAlbums([]);
-    setLoading(true);
-    fetch(`https://jsonplaceholder.typicode.com/users/${user.id}/posts`).then(
-      (res) =>
-        res
-          .json()
-          .then((posts) => {
-            setUserPosts(posts);
-          })
-          .finally(() => setLoading(false))
-    );
-  };
-
-  const userAlbumsHandler = () => {
-    setUserPosts([]);
-    setLoading(true);
-    fetch(`https://jsonplaceholder.typicode.com/users/${user.id}/albums`).then(
-      (res) =>
-        res
-          .json()
-          .then((albums) => {
-            setUserAlbums(albums);
-          })
-          .finally(() => setLoading(false))
-    );
-  };
+  const { data, loading, error } = useFetch<IPostItem[] | IAlbumItem[]>(url);
 
   return (
     <motion.div animate={{ opacity: [0, 1] }}>
@@ -82,7 +56,9 @@ const UserPageComponent: FC<IUserPageProps> = ({ user }) => {
             <button
               type="button"
               onClick={() => {
-                userPostsHandler();
+                setUrl(
+                  `https://jsonplaceholder.typicode.com/users/${user.id}/posts`
+                );
               }}
               className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
             >
@@ -92,7 +68,9 @@ const UserPageComponent: FC<IUserPageProps> = ({ user }) => {
             <button
               type="button"
               onClick={() => {
-                userAlbumsHandler();
+                setUrl(
+                  `https://jsonplaceholder.typicode.com/users/${user.id}/albums`
+                );
               }}
               className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
             >
@@ -100,24 +78,25 @@ const UserPageComponent: FC<IUserPageProps> = ({ user }) => {
             </button>
           </div>
           {loading && <Spinner />}
-          {userPosts && (
+          {data && (
             <>
-              {userPosts.map((post) => (
-                <PostItem
-                  key={post.id}
-                  {...post}
-                />
-              ))}
-            </>
-          )}
-          {userAlbums && (
-            <>
-              {userAlbums.map((album) => (
-                <AlbumsItem
-                  key={album.id}
-                  {...album}
-                />
-              ))}
+              {data.map((item: IPostItem | IAlbumItem) => {
+                if ("body" in item) {
+                  return (
+                    <PostItem
+                      key={item.id}
+                      {...item}
+                    />
+                  );
+                } else {
+                  return (
+                    <AlbumsItem
+                      key={item.id}
+                      {...item}
+                    />
+                  );
+                }
+              })}
             </>
           )}
         </div>

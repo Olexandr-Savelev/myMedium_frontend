@@ -1,11 +1,7 @@
 import Image from "next/image";
-import { Dispatch, FC, SetStateAction, useRef, useState } from "react";
+import { Dispatch, FC, SetStateAction } from "react";
 
-import { useAuth } from "../../../hooks/useAuth";
-
-import { IPostItem } from "../../../pageInterfaces/IndexPageProps";
 import { IPhotoItem } from "../../../pageInterfaces/PhotoPageProps";
-import { IComment } from "../../../pageInterfaces/PostPageProps";
 
 interface IModal {
   photo: IPhotoItem;

@@ -1,13 +1,14 @@
+import { FC } from "react";
 import Image from "next/image";
-import { Dispatch, FC, SetStateAction } from "react";
+
 import { IPhotoItem } from "../../../pageInterfaces/PhotoPageProps";
 
 interface IPhotoItemComponent {
   photo: IPhotoItem;
-  setPhoto: Dispatch<SetStateAction<IPhotoItem | null>>;
+  setModal: (photo: IPhotoItem) => void;
 }
 
-const PhotoItem: FC<IPhotoItemComponent> = ({ photo, setPhoto }) => {
+const PhotoItem: FC<IPhotoItemComponent> = ({ photo, setModal }) => {
   function loaderProp({ src }: { src: string }) {
     return src;
   }
@@ -15,7 +16,9 @@ const PhotoItem: FC<IPhotoItemComponent> = ({ photo, setPhoto }) => {
   return (
     <div
       key={photo.id}
-      onClick={() => setPhoto(photo)}
+      onClick={() => {
+        setModal(photo);
+      }}
       className="flex flex-col items-center bg-white border rounded-lg shadow-lg w-full mb-3 cursor-pointer hover:shadow-none"
     >
       <Image

@@ -6,6 +6,7 @@ import { useFetch } from "../../hooks/useFetch";
 import CommentModal from "./CommentModal/CommentModal";
 import CommentList from "./CommentList/CommentList";
 import CurrentPost from "./CurrentPost/CurrentPost";
+import AnimatedModal from "../AnimatedModal/AnimatedModal";
 
 import { IComment, IPostPageProps } from "../../pageInterfaces/PostPageProps";
 
@@ -35,13 +36,13 @@ const PostPageComponent: FC<IPostPageProps> = ({ postItem, user }) => {
         firebaseUser={firebaseUser}
         setIsModalOpen={setIsModalOpen}
       />
-      {isModalOpen && (
+      <AnimatedModal isOpen={isModalOpen}>
         <CommentModal
           post={postItem}
           setIsModalOpen={setIsModalOpen}
           addNewComment={addNewComment}
         />
-      )}
+      </AnimatedModal>
       <CommentList
         comments={comments}
         loading={loading}

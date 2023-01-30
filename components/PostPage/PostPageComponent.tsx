@@ -3,7 +3,7 @@ import { FC, useEffect, useState } from "react";
 import { useAuth } from "../../hooks/useAuth";
 import { useFetch } from "../../hooks/useFetch";
 
-import CommentModal from "./CommentModal/CommentModal";
+import CommentModalContent from "./CommentModalContent/CommentModalContent";
 import CommentList from "./CommentList/CommentList";
 import CurrentPost from "./CurrentPost/CurrentPost";
 import AnimatedModal from "../AnimatedModal/AnimatedModal";
@@ -37,7 +37,7 @@ const PostPageComponent: FC<IPostPageProps> = ({ postItem, user }) => {
         setIsModalOpen={setIsModalOpen}
       />
       <AnimatedModal isOpen={isModalOpen}>
-        <CommentModal
+        <CommentModalContent
           post={postItem}
           setIsModalOpen={setIsModalOpen}
           addNewComment={addNewComment}

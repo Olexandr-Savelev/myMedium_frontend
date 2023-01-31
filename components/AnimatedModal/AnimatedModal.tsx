@@ -4,12 +4,12 @@ import { Transition } from "react-transition-group";
 
 import { useMounted } from "../../hooks/useMounted";
 
-interface IModalProps {
+interface IAnimatedModalProps {
   children: PropsWithChildren<ReactNode>;
   isOpen: boolean;
 }
 
-const AnimatedModal: FC<IModalProps> = ({ children, isOpen }) => {
+const AnimatedModal: FC<IAnimatedModalProps> = ({ children, isOpen }) => {
   const mounted = useMounted(isOpen);
   if (!mounted) return null;
 
@@ -21,7 +21,7 @@ const AnimatedModal: FC<IModalProps> = ({ children, isOpen }) => {
   };
 
   const layoutTransitionStyles = {
-    entering: { opacity: 0.3 },
+    entering: { opacity: 0 },
     entered: { opacity: 0.3 },
     exiting: { opacity: 0 },
     exited: { opacity: 0 },
@@ -34,7 +34,7 @@ const AnimatedModal: FC<IModalProps> = ({ children, isOpen }) => {
   };
 
   const contentTransitionStyles = {
-    entering: { opacity: 1 },
+    entering: { opacity: 0 },
     entered: { opacity: 1 },
     exiting: { opacity: 0 },
     exited: { opacity: 0 },

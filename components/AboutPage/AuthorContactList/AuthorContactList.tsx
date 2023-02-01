@@ -1,6 +1,6 @@
 import { FC } from "react";
 
-import ContactItem from "./ContactItem/ContactItem";
+import ContactItem from "../ContactItem/ContactItem";
 
 const contacts = [
   {
@@ -30,7 +30,7 @@ const contacts = [
   },
 ];
 
-const ContactList: FC = () => {
+const AuhorContactList: FC = () => {
   return (
     <div className="max-w-2xl mx-auto flex gap-4 justify-center flex-wrap">
       {contacts.map((contact) => (
@@ -42,4 +42,4 @@ const ContactList: FC = () => {
   );
 };
 
-export default ContactList;
+export default AuhorContactList;

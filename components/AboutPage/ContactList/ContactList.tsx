@@ -1,4 +1,5 @@
 import { FC } from "react";
+
 import ContactItem from "./ContactItem/ContactItem";
 
 const contacts = [

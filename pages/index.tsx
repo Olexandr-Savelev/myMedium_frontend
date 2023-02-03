@@ -6,10 +6,7 @@ import { Slider } from "../components/Slider/Slider";
 import UsersList from "../components/UsersLIst/UsersList";
 import TopPosts from "../components/PostList/TopPosts/TopPosts";
 
-import { IndexPageProps } from "../pageInterfaces/IndexPageProps";
-
-import { getAllUsers } from "../services/users-service";
-import { getPosts } from "../services/posts-service";
+import { IndexPageProps, IPostItem } from "../pageInterfaces/IndexPageProps";
 
 const Home: NextPage<IndexPageProps> = ({ postList, usersList }) => {
   return (
@@ -30,8 +27,13 @@ const Home: NextPage<IndexPageProps> = ({ postList, usersList }) => {
 };
 
 export const getStaticProps: GetStaticProps = async () => {
-  const postList = await getPosts(6);
-  const usersList = await getAllUsers();
+  const postsRes = await fetch(
+    `https://jsonplaceholder.typicode.com/posts?_limit=6`
+  );
+  const postList: IPostItem[] = await postsRes.json();
+
+  const usersRes = await fetch("https://jsonplaceholder.typicode.com/users");
+  const usersList = await usersRes.json();
 
   return {
     props: {

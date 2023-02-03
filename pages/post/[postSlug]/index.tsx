@@ -6,10 +6,9 @@ import { useRouter } from "next/router";
 import PostPageComponent from "../../../components/PostPage/PostPageComponent";
 import Spinner from "../../../components/Spinner/Spinner";
 
-import { getPosts, getSinglePost } from "../../../services/posts-service";
 import { IPostItem } from "../../../pageInterfaces/IndexPageProps";
 import { IPostPageProps } from "../../../pageInterfaces/PostPageProps";
-import { getSingleUser } from "../../../services/users-service";
+import { IUser } from "pageInterfaces/UserPageProps";
 
 const PostPage: NextPage<IPostPageProps> = ({ postItem, user }) => {
   const router = useRouter();
@@ -24,7 +23,9 @@ const PostPage: NextPage<IPostPageProps> = ({ postItem, user }) => {
 };
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const posts = await getPosts();
+  const postsRes = await fetch(`https://jsonplaceholder.typicode.com/posts`);
+  const posts = await postsRes.json();
+
   const paths = posts!.map((post: IPostItem) => ({
     params: { postSlug: "" + post.id },
   }));
@@ -42,9 +43,15 @@ interface IParams extends ParsedUrlQuery {
 export const getStaticProps: GetStaticProps = async ({ params }) => {
   const { postSlug } = params as IParams;
 
-  const postItem = await getSinglePost(postSlug);
+  const postRes = await fetch(
+    `https://jsonplaceholder.typicode.com/posts/${postSlug}`
+  );
+  const postItem: IPostItem = await postRes.json();
 
-  const user = await getSingleUser(postItem?.userId + "");
+  const userRes = await fetch(
+    `https://jsonplaceholder.typicode.com/users/${postItem.userId}`
+  );
+  const user: IUser = await userRes.json();
 
   return {
     props: {

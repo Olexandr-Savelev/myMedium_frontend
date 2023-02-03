@@ -9,8 +9,8 @@ export const getPosts = async (
         limit ? `?_limit=${limit}` : ""
       }`
     );
-    const users: IPostItem[] = await res.json();
-    return users;
+    const posts: IPostItem[] = await res.json();
+    return posts;
   } catch (error) {
     console.log(error);
   }

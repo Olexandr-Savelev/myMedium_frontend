@@ -16,6 +16,7 @@ const AboutPageComponent = () => {
               layout="fill"
               alt="me"
               quality={50}
+              loading="eager"
             />
           </div>
           <div className="flex-1 mb-6">

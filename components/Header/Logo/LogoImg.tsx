@@ -13,6 +13,7 @@ export default function LogoImg(props: Props): JSX.Element {
         height={28}
         alt="Medium_logo"
         quality={50}
+        loading="eager"
         {...props}
       />
     </>

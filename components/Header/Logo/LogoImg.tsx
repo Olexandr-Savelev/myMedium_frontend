@@ -8,7 +8,7 @@ export default function LogoImg(props: Props): JSX.Element {
   return (
     <>
       <Image
-        src="/main/logo.png"
+        src={"/main/logo.png"}
         width={50}
         height={28}
         alt="Medium_logo"

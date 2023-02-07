@@ -15,6 +15,7 @@ const AboutPageComponent = () => {
               src={"/main/me.jpg"}
               layout="fill"
               alt="me"
+              quality={50}
             />
           </div>
           <div className="flex-1 mb-6">

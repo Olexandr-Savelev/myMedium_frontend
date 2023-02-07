@@ -41,7 +41,7 @@ const UserPageComponent: FC<IUserPageProps> = ({ user }) => {
           <div className="flex items-center gap-6 border-b border-slate-400 pb-3 mb-3">
             <Image
               className="rounded-full"
-              src="/avatar_placeholder.png"
+              src="/main/avatar_placeholder.png"
               width={80}
               height={80}
               alt="avatar_placeholder"

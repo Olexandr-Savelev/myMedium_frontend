@@ -12,7 +12,7 @@ const AboutPageComponent = () => {
           <div className="relative w-40 h-40 mx-auto mb-6 rounded-full shadow-lg">
             <Image
               className="object-cover mb-3 rounded-full"
-              src="/me.jpg"
+              src="/main/me.jpg"
               layout="fill"
               alt="me"
             />

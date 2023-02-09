@@ -1,10 +1,6 @@
 import Image from "next/image";
 
-type Props = {
-  layout?: "fill" | "responsive" | "intrinsic" | "fixed";
-};
-
-export default function LogoImg(props: Props): JSX.Element {
+export default function LogoImg(): JSX.Element {
   return (
     <>
       <Image
@@ -14,7 +10,6 @@ export default function LogoImg(props: Props): JSX.Element {
         alt="Medium_logo"
         quality={50}
         loading="eager"
-        {...props}
       />
     </>
   );

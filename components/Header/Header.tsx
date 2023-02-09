@@ -11,10 +11,16 @@ const Header: FC = () => {
 
   return (
     <header
-      className="relative drop-shadow-md border-b-[1px] border-slate-400 bg-white z-10 transition ease-in-out delay-150"
+      className="relative drop-shadow-md border-b-[1px] border-slate-400 bg-yellow-400 z-10 transition ease-in-out delay-150"
       style={
         isHeaderSticky
-          ? { position: "sticky", top: "0", backgroundColor: "rgb(250 204 21)" }
+          ? {
+              position: "sticky",
+              top: "0",
+              // backgroundColor: "rgba(250, 204, 21, 0.6)",
+              backgroundColor: "transparent",
+              backdropFilter: "blur(8px)",
+            }
           : {}
       }
     >

@@ -74,7 +74,7 @@ const Search: FC = () => {
             query ? setList(true) : setList(false);
           }}
           onBlur={() => setList(false)}
-          className="w-0 bg-gray-50 border-2 border-blue-200 text-slate-700 text-sm rounded-xl outline-none block pl-10 p-2.5 transition-all focus:border-blue-700 focus:w-32 sm:w-28 xs:focus:w-56 sm:focus:w-56"
+          className="w-0 bg-gray-50 border-2 border-blue-200 text-slate-700 text-sm rounded-xl outline-none block pl-10 p-2.5 transition-all focus:border-blue-700 focus:w-36 sm:w-28 xs:focus:w-56 sm:focus:w-56"
           id="simple-search"
           placeholder="Search"
         />

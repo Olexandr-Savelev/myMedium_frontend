@@ -24,8 +24,8 @@ interface IUIContext {
 
 const UIPovider: FC<ContextProps> = ({ children }) => {
   const [isHeaderSticky, setIsHeaderSticky] = useState(false);
-
   const [menu, setMenu] = useState(false);
+  const { route } = useRouter();
 
   const toggleMenu = () => {
     if (!menu) {
@@ -33,13 +33,11 @@ const UIPovider: FC<ContextProps> = ({ children }) => {
     } else setMenu(false);
   };
 
-  const router = useRouter();
-
   useEffect(() => {
-    if (router.asPath !== "/") {
+    if (route !== "/") {
       setIsHeaderSticky(false);
     }
-  }, [router.asPath]);
+  }, [route]);
 
   const value = {
     menu,

@@ -5,13 +5,18 @@ import Logo from "./Logo/Logo";
 import MobileNav from "./Nav/MobileNav";
 
 import { UIContext } from "../../context/uiContext";
+import { useRouter } from "next/router";
 
 const Header: FC = () => {
   const { isHeaderSticky } = useContext(UIContext);
 
+  const { route } = useRouter();
+
   return (
     <header
-      className="relative drop-shadow-md border-b-[1px] border-slate-400 bg-yellow-400 z-10 transition ease-in-out delay-150"
+      className={`relative drop-shadow-md border-b-[1px] ${
+        route === "/" ? "bg-yellow-400" : "bg-white"
+      } border-slate-400 z-10`}
       style={
         isHeaderSticky
           ? {

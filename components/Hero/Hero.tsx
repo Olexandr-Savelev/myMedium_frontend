@@ -2,11 +2,10 @@ import { motion } from "framer-motion";
 import { useContext, useEffect } from "react";
 import { useInView } from "react-intersection-observer";
 import { UIContext } from "../../context/uiContext";
-import styles from "./Hero.module.scss";
 
 export default function Hero() {
   const { setIsHeaderSticky } = useContext(UIContext);
-  const { ref, inView } = useInView();
+  const { ref, inView } = useInView({ initialInView: true });
 
   useEffect(() => {
     inView ? setIsHeaderSticky(false) : setIsHeaderSticky(true);

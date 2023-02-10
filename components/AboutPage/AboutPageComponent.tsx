@@ -21,12 +21,12 @@ const AboutPageComponent = () => {
           </div>
           <div className="flex-1 mb-6">
             <p className="text-xl text-slate-600 font-medium mb-3">
-              Hi! My name is Olexandr I was born in Kramatorsk Donetsk region at
-              1991. Now I&apos;m 31 y.o. and I live in Odesa. More than year ago
-              I decide to start learn front end development. During this time I
-              acquired skills in technologies such as HTML, CSS, Javascript,
-              React, Angular and other. I have several projects of varying
-              complexity using these technologies on my{" "}
+              Hi! My name is Oleksandr I was born in Kramatorsk Donetsk region
+              at 1991. Now I&apos;m 31 y.o. and I live in Odesa. More than year
+              ago I decide to start learn front end development. During this
+              time I acquired skills in technologies such as HTML, CSS,
+              Javascript, React, Angular and other. I have several projects of
+              varying complexity using these technologies on my{" "}
               {
                 <Link
                   href="https://github.com/Olexandr-Savelev"

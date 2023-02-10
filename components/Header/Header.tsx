@@ -14,7 +14,7 @@ const Header: FC = () => {
 
   return (
     <header
-      className={`relative drop-shadow-md border-b-[1px] ${
+      className={`relative drop-shadow-md border-b ${
         route === "/" ? "bg-yellow-400" : "bg-white"
       } border-slate-400 z-10`}
       style={
@@ -22,14 +22,13 @@ const Header: FC = () => {
           ? {
               position: "sticky",
               top: "0",
-              // backgroundColor: "rgba(250, 204, 21, 0.6)",
               backgroundColor: "transparent",
               backdropFilter: "blur(8px)",
             }
           : {}
       }
     >
-      <div className="max-w-7xl flex justify-between items-center mx-auto py-4 px-3">
+      <div className="max-w-7xl flex justify-between items-center mx-auto py-3 px-3">
         <Logo />
         <Nav />
         <MobileNav />

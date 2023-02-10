@@ -14,19 +14,13 @@ const Header: FC = () => {
 
   return (
     <header
-      className={`relative drop-shadow-md border-b ${
-        route === "/" ? "bg-yellow-400" : "bg-white"
-      } border-slate-400 z-10`}
-      style={
+      className={`border-slate-400 z-10  drop-shadow-md border-b 
+      ${
         isHeaderSticky
-          ? {
-              position: "sticky",
-              top: "0",
-              backgroundColor: "transparent",
-              backdropFilter: "blur(8px)",
-            }
-          : {}
-      }
+          ? "sticky top-0 bg-transparent backdrop-blur-md"
+          : "relative"
+      } 
+      ${route === "/" ? "bg-yellow-400" : "bg-white"}`}
     >
       <div className="max-w-7xl flex justify-between items-center mx-auto py-3 px-3">
         <Logo />

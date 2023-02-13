@@ -12,6 +12,7 @@ interface IPhotoModalContent {
 
 const PhotoModalContent: FC<IPhotoModalContent> = ({ photo, onModalClose }) => {
   const [modalNode, setModalNode] = useState<HTMLDivElement | null>(null);
+
   function loaderProp({ src }: { src: string }) {
     return src;
   }

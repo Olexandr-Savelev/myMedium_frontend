@@ -81,6 +81,7 @@ const CommentModalContent: FC<IModal> = ({
               rows={4}
               className="block p-2 w-full text-md text-gray-900 bg-gray-50 rounded-lg border border-gray-300 outline-none focus:ring-slate-500 focus:border-slate-500"
               placeholder="Write your comment here..."
+              autoFocus
               ref={ref}
             ></textarea>
             {error && (

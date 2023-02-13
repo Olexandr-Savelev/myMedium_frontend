@@ -5,16 +5,17 @@ const useOutsideClick = (
   handler: () => void
 ) => {
   useEffect(() => {
-    const closeModalOnOutsideClick = (event: MouseEvent) => {
+    const callHandlerOnOutsideClick = (event: MouseEvent) => {
       if (element) {
         if (!element.contains(event.target as Node)) {
+          console.log("123");
           handler();
         }
       }
     };
-    document.addEventListener("click", closeModalOnOutsideClick);
+    document.addEventListener("click", callHandlerOnOutsideClick);
     return () => {
-      document.removeEventListener("click", closeModalOnOutsideClick);
+      document.removeEventListener("click", callHandlerOnOutsideClick);
     };
   }, [element]);
 };

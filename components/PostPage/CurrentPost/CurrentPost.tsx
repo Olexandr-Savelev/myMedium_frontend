@@ -30,7 +30,8 @@ const CurrentPost: FC<ICurrentPostProps> = ({
 
         <button
           className="text-white bg-blue-700 hover:bg-blue-800 font-semibold rounded-lg text-sm px-5 py-2.5 text-center uppercase cursor-pointer outline-none block w-full sm:w-auto disabled:cursor-auto disabled:bg-blue-300 disabled:hover:bg-blue-300"
-          onClick={() => {
+          onClick={(e) => {
+            e.stopPropagation();
             setIsModalOpen(true);
           }}
           title={firebaseUser ? "Add Comment" : "Not authorized"}

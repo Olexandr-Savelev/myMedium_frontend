@@ -19,6 +19,10 @@ const PostPageComponent: FC<IPostPageProps> = ({ postItem, user }) => {
     setCommets((comments) => [...comments, comment]);
   };
 
+  const onModalClose = () => {
+    setIsModalOpen(false);
+  };
+
   const { data, loading, error } = useFetch<IComment[]>(
     `https://jsonplaceholder.typicode.com/posts/${postItem.id}/comments`
   );
@@ -36,7 +40,10 @@ const PostPageComponent: FC<IPostPageProps> = ({ postItem, user }) => {
         firebaseUser={firebaseUser}
         setIsModalOpen={setIsModalOpen}
       />
-      <AnimatedModal isOpen={isModalOpen}>
+      <AnimatedModal
+        isOpen={isModalOpen}
+        closeModal={onModalClose}
+      >
         <CommentModalContent
           post={postItem}
           setIsModalOpen={setIsModalOpen}

@@ -1,4 +1,4 @@
-import { FC, useState } from "react";
+import { FC, MouseEvent, useState } from "react";
 
 import PhotoModalContent from "./PhotoModalContent/PhotoModalContent";
 import PhotoItem from "./PhotoItem/PhotoItem";
@@ -10,7 +10,8 @@ const PhotosPageComponent: FC<IPhotosPage> = ({ photos }) => {
   const [currentPhoto, setCurrentPhoto] = useState<IPhotoItem | null>(null);
   const [modal, setModal] = useState<boolean>(false);
 
-  const onModalClose = () => {
+  const onModalClose = (e: MouseEvent) => {
+    e.stopPropagation();
     setModal(false);
   };
 
@@ -20,10 +21,13 @@ const PhotosPageComponent: FC<IPhotosPage> = ({ photos }) => {
 
   return (
     <div className="max-w-6xl p-2 py-4 mx-auto grid grid-cols-1 gap-3 xs:grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-      <AnimatedModal isOpen={modal}>
+      <AnimatedModal
+        isOpen={modal}
+        closeModal={onModalClose}
+      >
         <PhotoModalContent
           photo={currentPhoto!}
-          onModalClose={onModalClose}
+          closeModal={onModalClose}
         />
       </AnimatedModal>
       {photos.map((photo) => (

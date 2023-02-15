@@ -11,7 +11,9 @@ const Burger: FC = () => {
       className={cn(styles.burger, {
         [styles.active]: menu,
       })}
-      onClick={() => toggleMenu()}
+      onClick={(e) => {
+        e.stopPropagation(), toggleMenu();
+      }}
     >
       <span className={styles.line}></span>
     </div>

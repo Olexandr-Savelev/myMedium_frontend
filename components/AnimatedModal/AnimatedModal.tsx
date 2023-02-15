@@ -1,91 +1,67 @@
-import { CSSProperties, FC, PropsWithChildren, ReactNode, useRef } from "react";
-import { createPortal } from "react-dom";
-import { Transition } from "react-transition-group";
-
-import { useMounted } from "../../hooks/useMounted";
+import Portal from "components/Portal/Portal";
+import { AnimatePresence, motion } from "framer-motion";
+import useKeydown from "hooks/useKeydown";
+import {
+  FC,
+  MouseEvent,
+  PropsWithChildren,
+  ReactNode,
+  useEffect,
+  useRef,
+} from "react";
 
 interface IAnimatedModalProps {
   children: PropsWithChildren<ReactNode>;
   isOpen: boolean;
+  closeModal(e: MouseEvent): void;
 }
 
-interface ITransitionStyles {
-  [id: string]: CSSProperties;
-}
+const AnimatedModal: FC<IAnimatedModalProps> = ({
+  children,
+  isOpen,
+  closeModal,
+}) => {
+  const modalRef = useRef<HTMLDivElement | null>(null);
 
-const AnimatedModal: FC<IAnimatedModalProps> = ({ children, isOpen }) => {
-  const mounted = useMounted(isOpen);
-  const layoutRef = useRef<HTMLDivElement | null>(null);
-  const childRef = useRef<HTMLDivElement | null>(null);
-  if (!mounted) return null;
+  useEffect(() => {
+    const callHandlerOnOutsideClick = (event: any) => {
+      if (modalRef.current) {
+        if (!modalRef.current.contains(event.target as Node)) {
+          closeModal(event);
+        }
+      }
+    };
 
-  const duration = 300;
+    document.addEventListener("click", callHandlerOnOutsideClick);
+    return () => {
+      document.removeEventListener("click", callHandlerOnOutsideClick);
+    };
+  });
 
-  const layoutDefaultStyle = {
-    transition: `opacity ${duration}ms ease-in-out`,
-    opacity: 0,
-  };
-
-  const layoutTransitionStyles: ITransitionStyles = {
-    entering: { opacity: 0.3 },
-    entered: { opacity: 0.3 },
-    exiting: { opacity: 0 },
-    exited: { opacity: 0 },
-  };
-
-  const contentDefaultStyle = {
-    transition: `opacity ${duration}ms ease-in-out`,
-    opacity: 0,
-  };
-
-  const contentTransitionStyles: ITransitionStyles = {
-    entering: { opacity: 1 },
-    entered: { opacity: 1 },
-    exiting: { opacity: 0 },
-    exited: { opacity: 0 },
-  };
+  useKeydown({
+    Escape: closeModal,
+  });
 
   return (
-    <>
-      {createPortal(
-        <>
-          <Transition
-            nodeRef={layoutRef}
-            in={isOpen}
-            timeout={duration}
+    <Portal>
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1, transition: { duration: 0.2 } }}
+            exit={{ opacity: 0, transition: { duration: 0.2 } }}
           >
-            {(state) => (
-              <div
-                ref={layoutRef}
-                className="fixed inset-0 z-20 bg-black"
-                style={{
-                  ...layoutDefaultStyle,
-                  ...layoutTransitionStyles[state],
-                }}
-              ></div>
-            )}
-          </Transition>
-          <Transition
-            nodeRef={childRef}
-            in={isOpen}
-            timeout={duration}
-          >
-            {(state) => (
-              <div
-                ref={childRef}
-                style={{
-                  ...contentDefaultStyle,
-                  ...contentTransitionStyles[state],
-                }}
-              >
-                {children}
-              </div>
-            )}
-          </Transition>
-        </>,
-        document.body
-      )}
-    </>
+            <div className="fixed inset-0 bg-black opacity-25 z-20 overflow-y-hidden h-screen"></div>
+            <div
+              className="fixed top-[50%] translate-y-[-50%] left-[50%] translate-x-[-50%] z-30"
+              ref={modalRef}
+            >
+              {children}
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </Portal>
   );
 };
 

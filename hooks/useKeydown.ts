@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 
 interface IListeningKeys {
-  [key: string]: () => void;
+  [key: string]: (args?: any) => void;
 }
 
 const useKeydown = (listeningKeys: IListeningKeys) => {

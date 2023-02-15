@@ -16,7 +16,8 @@ const PhotoItem: FC<IPhotoItemComponent> = ({ photo, setModal }) => {
   return (
     <div
       key={photo.id}
-      onClick={() => {
+      onClick={(e) => {
+        e.stopPropagation();
         setModal(photo);
       }}
       className="flex flex-col items-center bg-white border rounded-lg shadow-lg w-full mb-3 cursor-pointer hover:shadow-none"

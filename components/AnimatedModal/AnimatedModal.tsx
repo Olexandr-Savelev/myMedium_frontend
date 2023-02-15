@@ -44,23 +44,25 @@ const AnimatedModal: FC<IAnimatedModalProps> = ({
 
   return (
     <Portal>
-      <AnimatePresence>
-        {isOpen && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1, transition: { duration: 0.2 } }}
-            exit={{ opacity: 0, transition: { duration: 0.2 } }}
-          >
-            <div className="fixed inset-0 bg-black opacity-25 z-20 overflow-y-hidden h-screen"></div>
-            <div
-              className="fixed top-[50%] translate-y-[-50%] left-[50%] translate-x-[-50%] z-30"
-              ref={modalRef}
+      <div className="z-20 fixed inset-0 w-screen h-screen pointer-events-none">
+        <AnimatePresence>
+          {isOpen && (
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1, transition: { duration: 0.2 } }}
+              exit={{ opacity: 0, transition: { duration: 0.2 } }}
             >
-              {children}
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+              <div className="fixed inset-0 bg-black opacity-25 z-20 overflow-y-hidden h-screen"></div>
+              <div
+                className="fixed top-[50%] translate-y-[-50%] left-[50%] translate-x-[-50%] z-30"
+                ref={modalRef}
+              >
+                {children}
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </div>
     </Portal>
   );
 };

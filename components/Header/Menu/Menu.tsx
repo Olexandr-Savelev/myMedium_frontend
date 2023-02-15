@@ -1,6 +1,5 @@
 import { FC, useContext, useEffect, useRef } from "react";
 
-import { useMounted } from "hooks/useMounted";
 import { useAuth } from "../../../hooks/useAuth";
 
 import { signOut } from "firebase/auth";
@@ -16,7 +15,6 @@ import { AnimatePresence, motion } from "framer-motion";
 const Menu: FC = () => {
   const menuRef = useRef<HTMLUListElement | null>(null);
   const { menu, toggleMenu } = useContext(UIContext);
-  const mounted = useMounted(menu);
   const firebaseUser = useAuth();
 
   useEffect(() => {
@@ -35,7 +33,7 @@ const Menu: FC = () => {
 
   return (
     <AnimatePresence>
-      {mounted && (
+      {menu && (
         <motion.ul
           initial={{ opacity: 0, top: "10px" }}
           animate={{ opacity: 1, top: "50px" }}

@@ -1,11 +1,11 @@
 import Image from "next/image";
-import { FC, MouseEvent } from "react";
+import { FC } from "react";
 
 import { IPhotoItem } from "../../../pageInterfaces/PhotoPageProps";
 
 interface IPhotoModalContent {
   photo: IPhotoItem;
-  closeModal: (e: MouseEvent) => void;
+  closeModal: () => void;
 }
 
 const PhotoModalContent: FC<IPhotoModalContent> = ({ photo, closeModal }) => {
@@ -22,7 +22,7 @@ const PhotoModalContent: FC<IPhotoModalContent> = ({ photo, closeModal }) => {
           </h3>
           <button
             className="p-1 ml-auto bg-transparent border-0 text-black opacity-30 float-right text-3xl leading-none font-semibold outline-none focus:outline-none hover:opacity-80"
-            onClick={(e) => closeModal(e)}
+            onClick={() => closeModal()}
           >
             &#10006;
           </button>

@@ -7,7 +7,7 @@ export const UserItem: FC<IUser> = (user) => {
     <div className="p-2 text-center border border-slate-400 rounded-lg inline-block shadow-md hover:shadow-none hover:cursor-pointer w-full sm:w-auto">
       <Link
         href={`/users/${user.id}`}
-        className="text-slate-700 font-normal"
+        className="text-slate-700 font-normal w-full"
       >
         {user.name}
       </Link>

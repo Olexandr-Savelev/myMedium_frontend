@@ -5,6 +5,7 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import { PostListProps } from "../../pageInterfaces/IndexPageProps";
 import PostItem from "./PostItem/PostItem";
 import Spinner from "../Spinner/Spinner";
+import AnimatedItem from "components/AnimatedItem/AnimatedItem";
 
 const PostList: FC<PostListProps> = ({ postList }) => {
   const [posts, setPosts] = useState(postList);
@@ -33,10 +34,9 @@ const PostList: FC<PostListProps> = ({ postList }) => {
       <div className="flex gap-[15px] flex-col">
         {posts.map((postItem) => {
           return (
-            <PostItem
-              key={postItem.id}
-              {...postItem}
-            />
+            <AnimatedItem key={postItem.id}>
+              <PostItem {...postItem} />
+            </AnimatedItem>
           );
         })}
       </div>

@@ -1,8 +1,5 @@
-import { FC, useEffect } from "react";
+import { FC } from "react";
 import Link from "next/link";
-
-import { motion, useAnimation } from "framer-motion";
-import { useInView } from "react-intersection-observer";
 
 import { IPostItem } from "../../../pageInterfaces/IndexPageProps";
 
@@ -11,28 +8,8 @@ interface TopPostItemProps extends IPostItem {
 }
 
 const PostItem: FC<TopPostItemProps> = ({ place, ...postItem }) => {
-  const controls = useAnimation();
-  const [ref, inView] = useInView();
-
-  useEffect(() => {
-    if (inView) {
-      controls.start("visible");
-    }
-  }, [controls, inView]);
-
-  const postVariants = {
-    visible: { opacity: 1, scale: 1, transition: { duration: 1 } },
-    hidden: { opacity: 0, scale: 0 },
-  };
-
   return (
-    <motion.div
-      className="w-full flex flex-col justify-between py-2 px-2 bg-white shadow-lg rounded-lg my-4 md:py-4 md:px-8"
-      ref={ref}
-      animate={controls}
-      initial={place ? "visible" : "hidden"}
-      variants={postVariants}
-    >
+    <div className="w-full flex flex-col justify-between py-2 px-2 bg-white shadow-lg rounded-lg my-4 md:py-4 md:px-8">
       <div>
         <h2 className="text-gray-800 text-3xl font-semibold">
           {postItem.title}
@@ -46,7 +23,7 @@ const PostItem: FC<TopPostItemProps> = ({ place, ...postItem }) => {
           </a>
         </Link>
       </div>
-    </motion.div>
+    </div>
   );
 };
 

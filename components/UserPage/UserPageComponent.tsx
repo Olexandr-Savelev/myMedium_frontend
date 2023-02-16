@@ -4,7 +4,8 @@ import { motion } from "framer-motion";
 
 import { useFetch } from "../../hooks/useFetch";
 
-import AlbumsItem from "../AlbumItem/AlbumItem";
+import AnimatedItem from "components/AnimatedItem/AnimatedItem";
+import AlbumItem from "../AlbumItem/AlbumItem";
 import PostItem from "../PostList/PostItem/PostItem";
 import Spinner from "../Spinner/Spinner";
 import UserInfo from "./UserInfo.tsx/UserInfo";
@@ -54,13 +55,13 @@ const UserPageComponent: FC<IUserPageProps> = ({ user }) => {
           <UserInfo user={user} />
           <div className="flex gap-2">
             <button
+              className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
               type="button"
               onClick={() => {
                 setUrl(
                   `https://jsonplaceholder.typicode.com/users/${user.id}/posts`
                 );
               }}
-              className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
             >
               {transformedUserName} Posts
             </button>
@@ -78,22 +79,20 @@ const UserPageComponent: FC<IUserPageProps> = ({ user }) => {
             </button>
           </div>
           {loading && <Spinner />}
-          {data && (
+          {data && !loading && (
             <>
               {data.map((item: IPostItem | IAlbumItem) => {
                 if ("body" in item) {
                   return (
-                    <PostItem
-                      key={item.id}
-                      {...item}
-                    />
+                    <AnimatedItem key={item.id}>
+                      <PostItem {...item} />
+                    </AnimatedItem>
                   );
                 } else {
                   return (
-                    <AlbumsItem
-                      key={item.id}
-                      {...item}
-                    />
+                    <AnimatedItem key={item.id}>
+                      <AlbumItem {...item} />
+                    </AnimatedItem>
                   );
                 }
               })}

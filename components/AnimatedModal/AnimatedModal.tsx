@@ -52,9 +52,9 @@ const AnimatedModal: FC<IAnimatedModalProps> = ({
               animate={{ opacity: 1, transition: { duration: 0.2 } }}
               exit={{ opacity: 0, transition: { duration: 0.2 } }}
             >
-              <div className="fixed inset-0 bg-black opacity-25 z-20 overflow-y-hidden h-screen"></div>
+              <div className="fixed inset-0 bg-black opacity-25 overflow-y-hidden h-screen"></div>
               <div
-                className="fixed top-[50%] translate-y-[-50%] left-[50%] translate-x-[-50%] z-30"
+                className="fixed top-[50%] translate-y-[-50%] left-[50%] translate-x-[-50%]"
                 ref={modalRef}
               >
                 {children}

@@ -13,7 +13,7 @@ const TopPosts: FC<ITopPostsProps> = ({ posts }) => {
         <PostItem
           key={post.id}
           {...post}
-          place={index + 1}
+          // place={index + 1}
         />
       ))}
     </div>
